@@ -36,3 +36,16 @@ Evidence files (emails, images, PDFs) are referenced from `data/` and loaded at 
 - **Portuguese/EU** — DL 24/2008, DL 57/2008, Código Civil, etc.
 
 See `FINAL_STATUS_REPORT.md` and `FINAL_VERIFICATION_REPORT.md` for verification details.
+
+---
+
+## GitHub Pages
+
+This repo includes a static **`index.html`** so you can enable GitHub Pages:
+
+1. On GitHub: **Settings → Pages**.
+2. Under **Source**, choose **Deploy from a branch**.
+3. Branch: **main**, folder: **/ (root)**.
+4. Save. The site will be at `https://dolevt-optimfreiheit.github.io/consumer-violations-evidence/`.
+
+The Streamlit app does not run on GitHub Pages (static hosting only). The page explains how to run the app locally or deploy it on Streamlit Community Cloud.
