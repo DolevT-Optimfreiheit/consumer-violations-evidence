@@ -82,14 +82,6 @@ def render_violations_page(jurisdiction="de_eu"):
     else:
         st.markdown("# Consumer Protection Violation Report")
     
-    # Page caption
-    if is_pt:
-        st.caption("Documentação para apresentação às autoridades reguladoras (ASAE, Verbraucherzentrale, ODR).")
-    elif is_de:
-        st.caption("Zur Einreichung bei Aufsichtsbehörden (Verbraucherzentrale, ASAE, EU-ODR-Plattform).")
-    else:
-        st.caption("For submission to regulatory authorities (Verbraucherzentrale, ASAE, EU ODR Platform).")
-
     stats = get_stats(jurisdiction)
     # Compact stats row
     c1, c2, c3 = st.columns(3)
