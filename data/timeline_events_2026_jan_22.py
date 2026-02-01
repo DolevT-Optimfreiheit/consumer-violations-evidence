@@ -1,0 +1,6 @@
+# Timeline Events 2026 - January 22 (Binding Confirmation Agreement)
+# Split into two files to keep under 500 lines each
+from data.timeline_events_2026_jan_22_articles_i_v import TIMELINE_EVENTS_2026_JAN_22_ARTICLES_I_V
+from data.timeline_events_2026_jan_22_articles_vi_viii import TIMELINE_EVENTS_2026_JAN_22_ARTICLES_VI_VIII
+
+TIMELINE_EVENTS_2026_JAN_22 = TIMELINE_EVENTS_2026_JAN_22_ARTICLES_I_V + TIMELINE_EVENTS_2026_JAN_22_ARTICLES_VI_VIII

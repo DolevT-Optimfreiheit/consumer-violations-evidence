@@ -1,0 +1,717 @@
+Delivered-To: dolev.tenenboim@gmail.com
+Received: by 2002:a05:7010:a089:b0:4fd:5517:2d66 with SMTP id nc9csp155107mdc;
+        Tue, 20 Jan 2026 06:29:30 -0800 (PST)
+X-Received: by 2002:a05:6214:4f17:b0:795:c55c:87de with SMTP id 6a1803df08f44-8942dd9e322mr144992396d6.5.1768919370429;
+        Tue, 20 Jan 2026 06:29:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768919370; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KY3fk/AlTuVudZiZcpP0hIsFvZi+NCGDi/YYoWY5OF6XaIoBPWY3Vp6zxWeg+5QaFq
+         Zz+cPBIYoP4JxY4WCzvBHcJFT6oOhJkSEwPFxa82w7evFfp2Ef7V1/P+/pO3ST0RdsCA
+         d64HHGfTGqhlVtltEw39m+yK6XuWlp7A5In525GPtVp9n1wC2C+/4z2MTmk+B959RkR1
+         eNhavaT/K+x1Ipl4/007hZscbN9Nh2+mS6WkFb7RVo3jw2vDcq6bFYJ0R2Zttx1PjU2v
+         fFgib35/o22OloWtSpORTi/AfLNdm97FXMaSHZUy+UJQavZvsjFyRGvT3SAbK+sTx4Jj
+         tQgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:feedback-id:subject:message-id:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=0vfjOgtZZkYTr/y0WSdLmd9f/bc59wm1H6Bn7p6Oin8=;
+        fh=Fu/PNKwXHCfgNF1eJ/91pgu27i2H2EHc2O1SSt0H0Iw=;
+        b=T2wPK2b7RjfsULi+vr9rEzXuiCJmL22lb3aMrRe9wFMmSydzNWVydJ8zZqSRzgubnX
+         s3iYqnGmvn2j63zmVuInlZheK6zt3mJaPr+EKNimordZReQGp8Fzn5onpPf+4OwJ7708
+         fkH3Ox4gvPw2zYZOPi8uKXgWY3Kd6uRF8eVHo+NZQqAM58Jtu9/B5QrnMdtKoRsr1lfS
+         w88QYXwyzBtOENzCJaKhzh8S3pdSM7dwH42qV/8jDQ9UyJ7wrRk8kGFq8WUktWlgMK+3
+         x2ahRPI11YFQDtRaQwgDlTWQiF8fm9sO44uK3O6Zba7aJji1QdDuhEYDntxyYV81OLe6
+         2hqg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=FAKej2BF;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=SdZx6TbB;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.235.154 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+Return-Path: <bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu>
+Received: from o11.mailer.shopify.com (o11.mailer.shopify.com. [149.72.235.154])
+        by mx.google.com with ESMTPS id 6a1803df08f44-8942e6f0627si143034896d6.732.2026.01.20.06.29.29
+        for <dolev.tenenboim@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 06:29:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.235.154 as permitted sender) client-ip=149.72.235.154;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=FAKej2BF;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=SdZx6TbB;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.235.154 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=madeinmarket.eu;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=cep; bh=0vfjOgtZZkYTr/y0WSdLmd9f/bc59wm1H6Bn7p6Oin8=;
+	b=FAKej2BFI9QGoOE5p/RvS86+ZGmtpnCXBjmA6TCVcMPUBOJi6LHLBIjod03NUptoKBGh
+	vD9F5wuKpC5xF7FQUMUokR+z2jUs67LWTs4K2aXvJNljlF+88tmi4I6hU3VauONUfGBp6W
+	jShuW6FFQamCRywUVmdpZnqyLLIQIQnM8/AoIxthKgYiReynIgXX/PYOQGlXxPPakmhO8l
+	A0OqzmUwzfbyQYEPrI/j8Sa6BZEJ0X5bk3iD070Y83PYuv8Qg0zXrrWb7vH0e8Z6VL9lJy
+	yuKGVMsZ9Xhx4hJsgtgRBNWz/EGVs18IjRB56wr6YMzaA2x7maTBJY9fekbYkqdQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=0vfjOgtZZkYTr/y0WSdLmd9f/bc59wm1H6Bn7p6Oin8=;
+	b=SdZx6TbB76Wv6/HnfNEcorkXT+XLI1DD5GlOUG4q/IIGRYQjpF3SGR5bsDtAbzsiwFQL
+	DXvgN88aMZxw5b311axXPbn/VI8ZvN1feknoQfXQWZUYZ3b9q0fP0A//5bn008Xi4G2YTi
+	g78cTJirOHgQCCERUEi74eo5ZL0iY3wqo=
+Received: by recvd-57646fdd57-k4t4w with SMTP id recvd-57646fdd57-k4t4w-1-696F9149-2B
+	2026-01-20 14:29:29.870927895 +0000 UTC m=+2910387.454340936
+Received: from MTE1ODY4Njk (unknown)
+	by geopod-ismtpd-62 (SG) with HTTP
+	id -TxQuFUER7S_7d-zQzVg5A
+	Tue, 20 Jan 2026 14:29:29.848 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=512d04424ec7e12488622365f0c7fc9268887ae13bcea91b9bf88eaae281
+Date: Tue, 20 Jan 2026 14:29:29 +0000 (UTC)
+From: Made in Market <info@madeinmarket.eu>
+Mime-Version: 1.0
+Message-ID: <E1020004-188C76CB5D402C21-2529E4E8@shopify.com>
+Subject: Order #16045 has been canceled
+Feedback-Id: s_64373031135:shopify
+X-SG-EID: 
+ =?us-ascii?Q?u001=2Ecp81fraSMd4x5boXgrCCFp0qb9xD52A4oqA7X+iXjnx0ws=2F0edwZRpQ4T?=
+ =?us-ascii?Q?1iWZKSvTcsrsnWhx0qspLYQTb90ASC527NDRSsX?=
+ =?us-ascii?Q?=2FYbfNdXa6oNl80blVJ+wcCm5bl7K0hS6wJBcyA7?=
+ =?us-ascii?Q?8GJ56C4rKUaUS3Om0UhiNy3Wo9sQXT7rPU77oI7?=
+ =?us-ascii?Q?fy4T3wCaTc+F5cjw42FjxdD97A00Td6EJ5bkMSn?=
+ =?us-ascii?Q?IMgQHmT2fVSjCCLqZXkoRPQVaI5n5S4rdgeNBUs?= =?us-ascii?Q?jGsT?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDITwp3LLcgXu9gv?=
+ =?us-ascii?Q?F1Oq5oTf1VY9MM=2F=2FZCviT=2FP37sq3wmI+ep7MJ63?=
+ =?us-ascii?Q?NhrwJYwrbBtJ9fL7BOCfpIRB1ufCyD3zJ8ZhwK5?=
+ =?us-ascii?Q?2XvHpIV9If4XRQlnJimC=2FGfeW1ulRkwzcyJvXhO?=
+ =?us-ascii?Q?CzoL9ch0GhgD7aRbLqa72m9eSu6yHaLDBKFJJ0Z?=
+ =?us-ascii?Q?72wSNFtrYHu4atRiRq1TJ0aPqHkUoZFIk=2FwM1Lf?=
+ =?us-ascii?Q?R=2FI10Dh7PQrYt+YlNMZvClhCMV1+xJ8Z12fupZU?=
+ =?us-ascii?Q?aWy8Ejv6dF0Z5IfMxLftNkEaSMPqg6bDcws1YmD?=
+ =?us-ascii?Q?CqJQbz0hJl6AfcwVST8IhMS9DTldV5yarkM2LDL?=
+ =?us-ascii?Q?tcB2+ejXQWkvq8aOD6DWqF=2FRF9a9pnLPwlQboiY?=
+ =?us-ascii?Q?CIrd+z1vQEDubXLXkntjZhsJM9KLF3zAirgtxdn?=
+ =?us-ascii?Q?xqaB3ZmEGznCcNUBbgECQTjbxqM38qDAYcXxodm?=
+ =?us-ascii?Q?1sIzn8lvP1YahxRgITcFd25VThTZoUAIWAWOfik?=
+ =?us-ascii?Q?JZwa1mAmU6G+1ngSN5sfjTb3ezMFOA4T7hSbuKU?=
+ =?us-ascii?Q?HFw1e0LC6H+K10Wu+Y4pVqzBb1QOTg4zJrp5i12?=
+ =?us-ascii?Q?PhESoEZhKt4Jw49maGDlewnNVrqtWKFXkNiLFBZ?=
+ =?us-ascii?Q?9zhDxNf0sztqyDO+w2Q=2Fnh2I=2Fh+Gl1ozAU3vOkS?=
+ =?us-ascii?Q?oJLmXVtyPd8AU1G7eSZDX6jON+f5W3E7ekZOWrV?=
+ =?us-ascii?Q?3sFh1D2ebmX+jMWNESgdC8u9NFlvJD7Q4xZxyMp?=
+ =?us-ascii?Q?Md4vNq+TWqWmtUbZYq+TaNyNWgEbL1h7vcmCI90?=
+ =?us-ascii?Q?utccsnMfCFqtFP28FQfWb8JMzLe4SdJEClsBtR2?=
+ =?us-ascii?Q?qV=2F5NNZ2FZiFcDGYqrH+oPNa4D4zyecmf45GfO3?=
+ =?us-ascii?Q?VBPelNd=2FKq9RrYKtZZ+fJdtM4ZL9mf2HCdMkMeS?=
+ =?us-ascii?Q?ixnM7UzH7y9pUt3wk2lbIQHCE1puyQp0rqgAekZ?=
+ =?us-ascii?Q?WRNOJkzFQEgY1lEu=2FJYw0rfvPU1Zuq4+xnxa8Cl?=
+ =?us-ascii?Q?MLLfM6yyIqmnrobDpGPOQ5oep6yfdSX93vwyuJn?=
+ =?us-ascii?Q?bCb=2FrH3lf9NP0t+WK+caLTsH5FG5bN3KskDYKhm?=
+ =?us-ascii?Q?MZyL40nXV8Hyu0jF0z5uvFqu3PnbIwoQ7uUaFtc?=
+ =?us-ascii?Q?rNBAZrfT0TVOf+fgPxTH9CM4vP0b5i+rwTsAL9M?=
+ =?us-ascii?Q?hHW1CZXL3DUJuQM58MLxVfZKv06G9IHp0pTb1Iy?=
+ =?us-ascii?Q?ADzMlM+REniguZ9DReXuVsNrQrmz0+klugI9re7?=
+ =?us-ascii?Q?yggh7fJomWxXk8Uqq=2FQLwVwb38VDram7bYvxNa0?=
+ =?us-ascii?Q?BwXlgpBbKvipxQ95sudp2cEwi3yyuaHA2uVJ2ZT?=
+ =?us-ascii?Q?spPHf0ssHk8HxFldHImbL=2F2b1h2XwuQnEGP=2FbU0?=
+ =?us-ascii?Q?7KVdZhZFj5L20Gl4wjhC53Zht4WkzaRImn1MiMy?=
+ =?us-ascii?Q?fVGoMSJDAplH5OGZudLlNH3C8yqyN9wjMaScHiN?=
+ =?us-ascii?Q?MOU8TPJrFZeKhyACGv+TNhoq7DZSGm+w1T7kYgc?=
+ =?us-ascii?Q?4MqOuc2B2jR?=
+To: dolev.tenenboim@gmail.com
+X-Entity-ID: u001.uNWTWLAPVnUUGFJYzhr9gw==
+
+--512d04424ec7e12488622365f0c7fc9268887ae13bcea91b9bf88eaae281
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+Your order has been canceled
+
+Made in Market
+
+Order #16045
+
+----------------------------
+Your order has been canceled
+----------------------------
+
+.
+
+Refunded Items
+--------------
+
+Skimmed Milk Lactose Free - 1L =C3=97 246
+
+Refunded
+
+=E2=82=AC479,70
+
+Subtotal
+
+=E2=82=AC479,70
+
+Shipping
+
+=E2=82=AC145,00
+
+Taxes
+
+=E2=82=AC40,87
+
+Total
+
+=E2=82=AC624,70 EUR
+
+Mastercard (ending in 3450)
+
+=E2=82=AC473,85
+
+Refund
+
+Mastercard
+
+- =E2=82=AC473,85
+
+If you have any questions, reply to this email or
+contact us at info@madeinmarket.eu
+--512d04424ec7e12488622365f0c7fc9268887ae13bcea91b9bf88eaae281
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w=
+3.org/TR/REC-html40/loose.dtd"><html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+<style>body {
+margin: 0;
+}
+h1 a:hover {
+font-size: 30px; color: #333;
+}
+h1 a:active {
+font-size: 30px; color: #333;
+}
+h1 a:visited {
+font-size: 30px; color: #333;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+.button__text:hover {
+color: #fff; text-decoration: none;
+}
+.button__text:active {
+color: #fff; text-decoration: none;
+}
+.button__text:visited {
+color: #fff; text-decoration: none;
+}
+a:hover {
+color: #F25C54;
+}
+a:active {
+color: #F25C54;
+}
+a:visited {
+color: #F25C54;
+}
+@media (max-width: 600px) {
+  .container {
+    width: 94% !important;
+  }
+  .main-action-cell {
+    float: none !important; margin-right: 0 !important;
+  }
+  .secondary-action-cell {
+    text-align: center; width: 100%;
+  }
+  .header {
+    margin-top: 20px !important; margin-bottom: 2px !important;
+  }
+  .shop-name__cell {
+    display: block;
+  }
+  .order-number__cell {
+    display: block; text-align: left !important; margin-top: 20px;
+  }
+  .po-number__cell {
+    display: block; text-align: left !important; margin-top: 5px;
+  }
+  .button {
+    width: 100%;
+  }
+  .or {
+    margin-right: 0 !important;
+  }
+  .apple-wallet-button {
+    text-align: center;
+  }
+  .customer-info__item {
+    display: block; width: 100% !important;
+  }
+  .spacer {
+    display: none;
+  }
+  .subtotal-spacer {
+    display: none;
+  }
+  .return__mobile-padding {
+    margin-top: 19px; padding-top: 19px;
+  }
+}
+</style>
+</head>
+<body style=3D"margin: 0;">
+
+
+
+
+ =20
+  <title>Your order has been canceled</title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"/=
+>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width"/>
+ =20
+ =20
+
+
+ =20
+    <table class=3D"body" style=3D"height: 100% !important; width: 100% !im=
+portant; border-spacing: 0; border-collapse: collapse;">
+      <tbody><tr>
+        <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#34;S=
+egoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Ca=
+ntarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neu=
+e&#34;, sans-serif;">
+          <table class=3D"header row" style=3D"width: 100%; border-spacing:=
+ 0; border-collapse: collapse; margin: 40px 0 20px;">
+  <tbody><tr>
+    <td class=3D"header__cell" style=3D"font-family: -apple-system, BlinkMa=
+cSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;U=
+buntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;,=
+ &#34;Helvetica Neue&#34;, sans-serif;">
+      <center>
+
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+
+              <table class=3D"row" style=3D"width: 100%; border-spacing: 0;=
+ border-collapse: collapse;">
+                <tbody><tr>
+                  <td class=3D"shop-name__cell" style=3D"font-family: -appl=
+e-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Ox=
+ygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34=
+;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif;">
+                      <img src=3D"https://cdn.shopify.com/s/files/1/0643/73=
+03/1135/files/Red.png?v=3D11248" alt=3D"Made in Market" width=3D"100"/>
+                  </td>
+
+                    <td class=3D"order-number__cell" style=3D"font-family: =
+-apple-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#=
+34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;,=
+ &#34;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif; text-transform=
+: uppercase; font-size: 14px; color: #999;" align=3D"right">
+                      <span class=3D"order-number__text" style=3D"font-size=
+: 16px;">
+                        Order #16045
+                      </span>
+                    </td>
+                </tr>
+              </tbody></table>
+
+            </td>
+          </tr>
+        </tbody></table>
+
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+          <table class=3D"row content" style=3D"width: 100%; border-spacing=
+: 0; border-collapse: collapse;">
+  <tbody><tr>
+    <td class=3D"content__cell" style=3D"font-family: -apple-system, BlinkM=
+acSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;=
+Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;=
+, &#34;Helvetica Neue&#34;, sans-serif; padding-bottom: 40px; border-width:=
+ 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+             =20
+            <h2 style=3D"font-weight: normal; font-size: 24px; margin: 0 0 =
+10px;">Your order has been canceled</h2>
+            <p style=3D"color: #777; line-height: 150%; font-size: 16px; ma=
+rgin: 0;">
+ =20
+  .
+</p>
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+          <table class=3D"row section" style=3D"width: 100%; border-spacing=
+: 0; border-collapse: collapse;">
+  <tbody><tr>
+    <td class=3D"section__cell" style=3D"font-family: -apple-system, BlinkM=
+acSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;=
+Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;=
+, &#34;Helvetica Neue&#34;, sans-serif; padding: 40px 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+              <h3 style=3D"font-weight: normal; font-size: 20px; margin: 0 =
+0 25px;">Refunded Items</h3>
+            </td>
+          </tr>
+        </tbody></table>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+             =20
+           =20
+<table class=3D"row" style=3D"width: 100%; border-spacing: 0; border-collap=
+se: collapse;">
+ =20
+  <tbody><tr class=3D"order-list__item" style=3D"width: 100%; border-top-wi=
+dth: 1px; border-top-color: #e5e5e5; border-top-style: none;">
+    <td class=3D"order-list__item__cell" style=3D"font-family: -apple-syste=
+m, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#3=
+4;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid =
+Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif;">
+      <table style=3D"border-spacing: 0; border-collapse: collapse;">
+        <tbody><tr><td style=3D"font-family: -apple-system, BlinkMacSystemF=
+ont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#3=
+4;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;He=
+lvetica Neue&#34;, sans-serif;">
+         =20
+            <img src=3D"https://cdn.shopify.com/s/files/1/0643/7303/1135/fi=
+les/MIM-Productimages_42_compact_cropped.png?v=3D1764713752" align=3D"left"=
+ width=3D"60" height=3D"60" class=3D"order-list__product-image" style=3D"ma=
+rgin-right: 15px; border-radius: 8px; border: 1px solid #e5e5e5;"/>
+         =20
+        </td>
+        <td class=3D"order-list__product-description-cell" style=3D"font-fa=
+mily: -apple-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#3=
+4;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans=
+&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif; width: 1=
+00%;">
+         =20
+
+         =20
+
+          <span class=3D"order-list__item-title" style=3D"font-size: 16px; =
+font-weight: 600; line-height: 1.4; color: #555;">Skimmed Milk Lactose Free=
+ - 1L=C2=A0=C3=97=C2=A0246</span><br/>
+
+         =20
+
+         =20
+
+         =20
+            <span class=3D"order-list__item-refunded" style=3D"font-size: 1=
+4px; color: #B28400;">Refunded</span>
+         =20
+
+         =20
+           =20
+         =20
+        </td>
+          <td class=3D"order-list__price-cell" style=3D"font-family: -apple=
+-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxy=
+gen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;=
+Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif; white-space: nowrap;=
+">
+           =20
+            <p class=3D"order-list__item-price" style=3D"color: #555; line-=
+height: 150%; font-size: 16px; font-weight: 600; margin: 4px 0 0 15px;" ali=
+gn=3D"right">
+             =20
+                =E2=82=AC479,70
+             =20
+            </p>
+          </td>
+      </tr></tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+            <table class=3D"row subtotal-lines" style=3D"width: 100%; borde=
+r-spacing: 0; border-collapse: collapse; margin-top: 15px; border-top-width=
+: 1px; border-top-color: #e5e5e5; border-top-style: solid;">
+  <tbody><tr>
+    <td class=3D"subtotal-spacer" style=3D"font-family: -apple-system, Blin=
+kMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#3=
+4;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#3=
+4;, &#34;Helvetica Neue&#34;, sans-serif; width: 40%;"></td>
+    <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#34;Segoe=
+ UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Cantar=
+ell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neue&#3=
+4;, sans-serif;">
+      <table class=3D"row subtotal-table" style=3D"width: 100%; border-spac=
+ing: 0; border-collapse: collapse; margin-top: 20px;">
+       =20
+
+       =20
+<tbody><tr class=3D"subtotal-line">
+  <td class=3D"subtotal-line__title" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;">
+    <p style=3D"color: #777; line-height: 1.2em; font-size: 16px; margin: 4=
+px 0 0;">
+      <span style=3D"font-size: 16px;">Subtotal</span>
+    </p>
+  </td>
+  <td class=3D"subtotal-line__value" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;" align=3D"righ=
+t">
+    <strong style=3D"font-size: 16px; color: #555;">=E2=82=AC479,70</strong=
+>
+  </td>
+</tr>
+
+       =20
+         =20
+<tr class=3D"subtotal-line">
+  <td class=3D"subtotal-line__title" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;">
+    <p style=3D"color: #777; line-height: 1.2em; font-size: 16px; margin: 4=
+px 0 0;">
+      <span style=3D"font-size: 16px;">Shipping</span>
+    </p>
+  </td>
+  <td class=3D"subtotal-line__value" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;" align=3D"righ=
+t">
+    <strong style=3D"font-size: 16px; color: #555;">=E2=82=AC145,00</strong=
+>
+  </td>
+</tr>
+
+       =20
+
+       =20
+
+       =20
+<tr class=3D"subtotal-line">
+  <td class=3D"subtotal-line__title" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;">
+    <p style=3D"color: #777; line-height: 1.2em; font-size: 16px; margin: 4=
+px 0 0;">
+      <span style=3D"font-size: 16px;">Taxes</span>
+    </p>
+  </td>
+  <td class=3D"subtotal-line__value" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;" align=3D"righ=
+t">
+    <strong style=3D"font-size: 16px; color: #555;">=E2=82=AC40,87</strong>
+  </td>
+</tr>
+
+
+       =20
+      </tbody></table>
+      <table class=3D"row subtotal-table subtotal-table--total" style=3D"wi=
+dth: 100%; border-spacing: 0; border-collapse: collapse; margin-top: 20px; =
+border-top-width: 2px; border-top-color: #e5e5e5; border-top-style: solid;"=
+>
+       =20
+<tbody><tr class=3D"subtotal-line">
+  <td class=3D"subtotal-line__title" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 20px 0 0;">
+    <p style=3D"color: #777; line-height: 1.2em; font-size: 16px; margin: 4=
+px 0 0;">
+      <span style=3D"font-size: 16px;">Total</span>
+    </p>
+  </td>
+  <td class=3D"subtotal-line__value" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 20px 0 0;" align=3D"r=
+ight">
+    <strong style=3D"font-size: 24px; color: #555;">=E2=82=AC624,70 EUR</st=
+rong>
+  </td>
+</tr>
+
+      </tbody></table>
+
+     =20
+
+     =20
+     =20
+     =20
+
+     =20
+        <table class=3D"row subtotal-table" style=3D"width: 100%; border-sp=
+acing: 0; border-collapse: collapse; margin-top: 20px;">
+          <tbody><tr><td colspan=3D"2" class=3D"subtotal-table__line" style=
+=3D"font-family: -apple-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#3=
+4;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#3=
+4;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-seri=
+f; border-bottom-width: 1px; border-bottom-color: #e5e5e5; border-bottom-st=
+yle: solid; height: 1px; padding: 0;"></td></tr>
+          <tr><td colspan=3D"2" class=3D"subtotal-table__small-space" style=
+=3D"font-family: -apple-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#3=
+4;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#3=
+4;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-seri=
+f; height: 10px;"></td></tr>
+
+         =20
+           =20
+             =20
+
+             =20
+<tr class=3D"subtotal-line">
+  <td class=3D"subtotal-line__title" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;">
+    <p style=3D"color: #777; line-height: 1.2em; font-size: 16px; margin: 4=
+px 0 0;">
+      <span style=3D"font-size: 16px;">Mastercard (ending in 3450)</span>
+    </p>
+  </td>
+  <td class=3D"subtotal-line__value" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;" align=3D"righ=
+t">
+    <strong style=3D"font-size: 16px; color: #555;">=E2=82=AC473,85</strong=
+>
+  </td>
+</tr>
+
+           =20
+           =20
+         =20
+           =20
+           =20
+             =20
+
+             =20
+<tr class=3D"subtotal-line">
+  <td class=3D"subtotal-line__title" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;">
+    <p style=3D"color: #777; line-height: 1.2em; font-size: 16px; margin: 4=
+px 0 0;">
+      <span style=3D"font-size: 16px;">Refund</span>
+        <br/>
+        <small style=3D"font-size: 14px; color: #999;">Mastercard</small>
+    </p>
+  </td>
+  <td class=3D"subtotal-line__value" style=3D"font-family: -apple-system, B=
+linkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, =
+&#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans=
+&#34;, &#34;Helvetica Neue&#34;, sans-serif; padding: 2px 0;" align=3D"righ=
+t">
+    <strong style=3D"font-size: 16px; color: #555;">- =E2=82=AC473,85</stro=
+ng>
+  </td>
+</tr>
+
+           =20
+         =20
+        </tbody></table>
+     =20
+    </td>
+  </tr>
+</tbody></table>
+
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+          <table class=3D"row footer" style=3D"width: 100%; border-spacing:=
+ 0; border-collapse: collapse; border-top-width: 1px; border-top-color: #e5=
+e5e5; border-top-style: solid;">
+  <tbody><tr>
+    <td class=3D"footer__cell" style=3D"font-family: -apple-system, BlinkMa=
+cSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;U=
+buntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;,=
+ &#34;Helvetica Neue&#34;, sans-serif; padding: 35px 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+             =20
+              <p class=3D"disclaimer__subtext" style=3D"color: #999; line-h=
+eight: 150%; font-size: 14px; margin: 0;">If you have any questions, reply =
+to this email or contact us at <a href=3D"mailto:info@madeinmarket.eu" styl=
+e=3D"font-size: 14px; text-decoration: none; color: #F25C54;">info@madeinma=
+rket.eu</a></p>
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+<img src=3D"https://cdn.shopify.com/shopifycloud/shopify/assets/themes_supp=
+ort/notifications/spacer-1a26dfd5c56b21ac888f9f1610ef81191b571603cb207c6c0f=
+564148473cab3c.png" class=3D"spacer" height=3D"1" style=3D"min-width: 600px=
+; height: 0;"/>
+
+        </td>
+      </tr>
+    </tbody></table>
+ =20
+
+
+
+</body></html>
+--512d04424ec7e12488622365f0c7fc9268887ae13bcea91b9bf88eaae281--

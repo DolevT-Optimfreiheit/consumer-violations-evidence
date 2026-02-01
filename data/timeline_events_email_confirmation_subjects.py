@@ -1,0 +1,66 @@
+# Timeline Events - Confirmation Email Subject Lines
+TIMELINE_EVENTS_EMAIL_CONFIRMATION_SUBJECTS = [
+    {
+        "date": "2025-11-19",
+        "title": "Order #15073 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #15073 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #15073 confirmed - Made in Market (info@madeinmarket.eu) - 2025-11-19 1907.eml"],
+    },
+    {
+        "date": "2025-11-26",
+        "title": "Order #15179 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #15179 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #15179 confirmed - Made in Market (info@madeinmarket.eu) - 2025-11-26 1101.eml"],
+    },
+    {
+        "date": "2025-12-03",
+        "title": "Order #15341 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #15341 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #15341 confirmed - Made in Market (info@madeinmarket.eu) - 2025-12-03 1102.eml"],
+    },
+    {
+        "date": "2026-01-10",
+        "title": "Order #15977 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #15977 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #15977 confirmed - Made in Market (info@madeinmarket.eu) - 2026-01-10 1848.eml"],
+    },
+    {
+        "date": "2026-01-16",
+        "title": "Order #16045 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #16045 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #16045 confirmed - Made in Market (info@madeinmarket.eu) - 2026-01-16 0035.eml"],
+    },
+    {
+        "date": "2026-01-24",
+        "title": "Order #16142 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #16142 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #16142 confirmed - Made in Market (info@madeinmarket.eu) - 2026-01-24 1102.eml"],
+    },
+    {
+        "date": "2026-01-24",
+        "title": "Order #16144 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #16144 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #16144 confirmed - Made in Market (info@madeinmarket.eu) - 2026-01-24 1102.eml"],
+    },
+    {
+        "date": "2026-01-25",
+        "title": "Order #16161 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #16161 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #16161 confirmed - Made in Market (info@madeinmarket.eu) - 2026-01-25 1102.eml"],
+    },
+    {
+        "date": "2026-01-31",
+        "title": "Order #16245 Confirmation - Subject Line",
+        "desc": "Subject line: \"Order #16245 confirmed\".",
+        "type": "communication",
+        "evidence": ["Order #16245 confirmed - Made in Market (info@madeinmarket.eu) - 2026-01-31 1102.eml"],
+    },
+]

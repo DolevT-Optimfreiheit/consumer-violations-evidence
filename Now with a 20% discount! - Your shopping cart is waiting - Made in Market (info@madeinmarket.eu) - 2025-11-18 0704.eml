@@ -1,0 +1,1215 @@
+Delivered-To: dolev.tenenboim@gmail.com
+Received: by 2002:a05:7010:6043:b0:4d4:9cd1:ae2e with SMTP id s3csp3880787mde;
+        Mon, 17 Nov 2025 22:04:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGWjsyUT53FqOrvUOb3lijJjUDyB+VIhgEdXQQ136QvchX5fg3mLQSvsRLLI0mBJ5UkGBlF
+X-Received: by 2002:ac8:5a47:0:b0:4ee:1e33:bc45 with SMTP id d75a77b69052e-4ee3140eb67mr16572801cf.5.1763445855436;
+        Mon, 17 Nov 2025 22:04:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763445855; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fALpCNM2leBKGYGxnKGqPNvi26E7bLJhTP0ryzBEAycsxB25FX9ZlcuttDFk6Yxtmt
+         08lumOSgjaeVZp5EK+9/BINGDIUgskbYDT9sKc8a/K+hUFW/lChlQVYG3DlG6MnVcCZO
+         zCk4b4/2ABycKrIMOB12cDaz7LZPzrowaCIYj3JV04x6LlndduIVZy3C+awKDqvyl+yB
+         167ZgMbZXkMM23j4lXZEJHkWfK8v8e42Fwi8P2z5jrJcO9WfX38BOzexDsIDlue0IiR/
+         BjBODV2DUMgAxf6dWSip8m8Y+BgQxfE0pLmTMB/fcXlfbn6zOxGniRxiQ0TaYFbIwiHa
+         c7Cw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:precedence:list-unsubscribe-post:list-unsubscribe:feedback-id
+         :subject:message-id:mime-version:from:date:content-transfer-encoding
+         :dkim-signature:dkim-signature;
+        bh=PPp7541V39x+itHJsLorrHJfXwZiurnNi74MfUAKeAs=;
+        fh=Fu/PNKwXHCfgNF1eJ/91pgu27i2H2EHc2O1SSt0H0Iw=;
+        b=c/7qPED8Donm7HBxVc6pZ3lV9YwAWV1wIqIfixr2+ojjinr2sfq6Ad6R5VR07x4FP8
+         +GY8yGtwIOPrTkIOb2FJFfKBS++pN2ehSOyH8kjOW7qEI5WHO4UyDDuhr2bbm8QgREzR
+         wTGUw2uowllXHfg4nfU4R2nZfAvdb9f4fvbyI5YE4bkQlqk7vHsL0dZsraWyOnpteVNY
+         mGKSEjUd+lK/8f5DB7GDGW8Z1EpUHorP8/E7TH1fS3MG65yC3aYDYKKbw1v1rc6XQlXb
+         CVfeRFE1XmsowZfuws9QBe2TyaCbqCxOIFIJgKnAzMQNKHCVODa+EsqODK4e5nazi4ve
+         U4mg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=TZzigNIM;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="nqIE/GHR";
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 134.128.95.185 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+Return-Path: <bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu>
+Received: from o53.mailer.shopify.com (o53.mailer.shopify.com. [134.128.95.185])
+        by mx.google.com with ESMTPS id d75a77b69052e-4ee18864ab1si22701831cf.1248.2025.11.17.22.04.13
+        for <dolev.tenenboim@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Nov 2025 22:04:14 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 134.128.95.185 as permitted sender) client-ip=134.128.95.185;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=TZzigNIM;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="nqIE/GHR";
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 134.128.95.185 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=madeinmarket.eu;
+	h=content-transfer-encoding:content-type:date:from:mime-version:subject:
+	feedback-id:list-unsubscribe:list-unsubscribe-post:to:cc:content-type:date:
+	feedback-id:from:subject:to;
+	s=cep; bh=PPp7541V39x+itHJsLorrHJfXwZiurnNi74MfUAKeAs=;
+	b=TZzigNIMtF56bJjDdLLtpdzsWU0WAsXWN896fx3oRLhT48dVeAfbDGmq5I3mtJ3JJFl2
+	Q1Nv4cO8OVD8NK94YnNUcmzXivUtN7040edflymDPOiXM+SJrfnLgZVPkBapH8hiebIunb
+	mt47UFDiuIPSNet+CmQbd+zDKzU762Sx+AAIp6jAoef6a0UBwoScystbefvWikT6Qwjwha
+	62BOZZ0D0xUcndTFGAsTLg1+3POOsvv3nF9BAg4K8hj1BhxNSDYDqhfb3P3nvyccKAZlI+
+	7/DKq6CKCapXg2Cx0D6qmfvaRSNu+PUvQ7kykDgLJCD8DzjubWIkpIFH693VQglw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:date:from:mime-version:subject:
+	feedback-id:list-unsubscribe:list-unsubscribe-post:to:cc:content-type:date:
+	feedback-id:from:subject:to;
+	s=smtpapi; bh=PPp7541V39x+itHJsLorrHJfXwZiurnNi74MfUAKeAs=;
+	b=nqIE/GHRDA/ryDFgAH4bzLtl82ysRbgTvSqU6kTNKVzLYggwaGbdxjGkN6OyT4shQh00
+	SWquE4nkaVQvFmqb/z5K7u40PDYZY2gs1VG+frGzA6uYH14J0LfT//JibaLaGqPp4cJGCR
+	DKIHfYp4AU+vSMm7UooM2RqW2POoTMQ3s=
+Received: by recvd-7f4fb8995-rgjpj with SMTP id recvd-7f4fb8995-rgjpj-1-691C0C5C-2E
+	2025-11-18 06:04:12.808928329 +0000 UTC m=+14390419.917742783
+Received: from MTE1ODY4Njk (unknown)
+	by geopod-ismtpd-5 (SG) with HTTP
+	id I68O1AqfTdeoUNtlhp7Xjw
+	Tue, 18 Nov 2025 06:04:12.762 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Date: Tue, 18 Nov 2025 06:04:12 +0000 (UTC)
+From: Made in Market <info@madeinmarket.eu>
+Mime-Version: 1.0
+Message-ID: <E1020005-187904A8C2E32249-AE67FED8@shopify.com>
+Subject: Now with a 20% discount! - Your shopping cart is waiting
+Feedback-Id: s_64373031135:shopify
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Femail=2Eshopifyapps=2Ecom=2Fsubscriptions=2Funsubscribe=3Ftoken?=
+ =?us-ascii?Q?=3Dd6EupA8vaB83beoHQUFcMYoPc2TCQXmOEGs6uG?=
+ =?us-ascii?Q?DmHfH%2Fd4hnH3XfEQCLjxpvlxkekoVCvPRrt4n?=
+ =?us-ascii?Q?wcWsaOUhmrwS6Ewbna801tQooqwah1Bl%2BLvFS?=
+ =?us-ascii?Q?W%2B1Ek4vptUzj32Ksgc1Ei0h5%2FG006QkttTI?=
+ =?us-ascii?Q?wXQv%2F13BPiR4OinteXjMEAOatOcNv69OaOMFv?=
+ =?us-ascii?Q?3SmjBik%2BBhaH84GcGSVbBzjfTDQ4UaUzoNGZ8?=
+ =?us-ascii?Q?thYKuE1d933Fzf2q174lPA%3D--QX71XyReOIFj?=
+ =?us-ascii?Q?9vtI--E64xtL0F1ATch8P738Scmw%3D%3D=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Precedence: bulk
+X-SG-EID: 
+ =?us-ascii?Q?u001=2Ecp81fraSMd4x5boXgrCCFp0qb9xD52A4oqA7X+iXjnx0ws=2F0edwZRpQ4T?=
+ =?us-ascii?Q?1iWZKSvTcsrsnWhx0qspLYQTb90AZcxhnfeNcXH?=
+ =?us-ascii?Q?Hod1DQNG+JKMNUGhmaDm3u6=2FpVv61xbTgAr0vhS?=
+ =?us-ascii?Q?RrzeoLvjMgtO5rTr8O7+75aulOm4n0J6w4=2FLqPQ?=
+ =?us-ascii?Q?iVkXxGzGctJ0S1OpKbv+leZlpFxfFO0HZcRaPCm?=
+ =?us-ascii?Q?Yx2JmRYgjV6nek=2Fr8=2FR07O068bRY0MpOL+XM+BY?=
+ =?us-ascii?Q?1nR=2F?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDITwp3LLcgXu9gv?=
+ =?us-ascii?Q?F1Oq5oTf1VY9MM=2F=2FZCviT=2FP37sq3wmI+ep7MJ63?=
+ =?us-ascii?Q?NhrwJYwrbBtJ9fL7BOCfpIRB1ufCyD3z6PIgReH?=
+ =?us-ascii?Q?i=2FW9SMLiFsOxb2APSNenWK3WuyZJoqfUTNnsCo4?=
+ =?us-ascii?Q?C78=2FbYSLj4UtSMU8saMeXgb+z4jJ+zN2bZMOpPt?=
+ =?us-ascii?Q?3bRJa9ZDztxeQVA=2FrUrfPPMdwHYzWx6D4mDcO9h?=
+ =?us-ascii?Q?lHk3wxuCA1aSM6hx13VPtqon4BIGGJ3qxEmUtHH?=
+ =?us-ascii?Q?rqKFVVx0W285y5zOd+0kIb8wRsuk3MQiB0nsbsD?=
+ =?us-ascii?Q?gE48B6dPHIGACXFXqg=2Fzn+BP1v9AQTm4hWe8arM?=
+ =?us-ascii?Q?QUkhgmZQtDZNu4Y7c4hE0ntmA3=2FUAkvIEIzX2uj?=
+ =?us-ascii?Q?IohHKVIIoZVyyEKzlC0vAfpRQvkJNlRxxsn333g?=
+ =?us-ascii?Q?fYKEyj3l=2FuD7=2Fs2WssxsF1xX8nygQzT86hw2y+Q?=
+ =?us-ascii?Q?ihBgOfJriEHVUAmyE2fwW4Kas1BMoeA8=2F+kgy7G?=
+ =?us-ascii?Q?OQk62fZp7zv35cqfevondx9ecVwept6m2ugF+ME?=
+ =?us-ascii?Q?fXhpWNeowuI35mZt2iG=2FzaYK=2FgU6+Z=2FKZulHuLG?=
+ =?us-ascii?Q?s9wpVjEIvK1=2FAdTaMzRgfx=2FqVsbKxY+Mlskqf32?=
+ =?us-ascii?Q?8CS72rHsPMLLxLIkvO6rXJD=2FKNX6Du=2F23RTE2hI?=
+ =?us-ascii?Q?Wj6wgHMqm9ELCyCLfFzmxrbB3Npk=2FYPQvH1BQ=2F8?=
+ =?us-ascii?Q?wtt5B=2FtaUV5RbRk7WzGxhqW4jLQr0HNTvJKMTVJ?=
+ =?us-ascii?Q?=2FDft7QRLVfp8jLnI6Wd1TGsqiFfABNns07y+1Ey?=
+ =?us-ascii?Q?e56DDqaeLFj=2FuoNH0zV6YObCgRSWLreYHJbrgTV?=
+ =?us-ascii?Q?M7DkAoh=2Fh7jkT2vu8hdw3Wp52EihRQ8TL2nr+Qi?=
+ =?us-ascii?Q?Ez1lEdi4FdWuhv2LDHaHc0Sj9eagS7qT=2FisYwP0?=
+ =?us-ascii?Q?zCEoCMIphxNRMLJ2DhVduf76eskH8E4jFKPWj=2F1?=
+ =?us-ascii?Q?QddnLNCmXeyTgXqRsLjTBQaOGbPTGkEryxzZfyS?=
+ =?us-ascii?Q?0N+F1Uudqn6lvU9IvXWeuVtt1noHTTARt9ewhUk?=
+ =?us-ascii?Q?+b3NiRzAJNZkQ08lhOduLM7kVqfXfF8W2S4PYRM?=
+ =?us-ascii?Q?3lxm2uDimbNc+rvudZbdCnjmqar=2FZIbZTeDVWQF?=
+ =?us-ascii?Q?dIeQSPmcWn9nPD1d34pAjiohUQDugaGQctgOJaq?=
+ =?us-ascii?Q?bzmXT+EFLVVlGx77MWa4t+D2V=2Fmp3RCp9Ko80Fa?=
+ =?us-ascii?Q?0wgJzAMuwZ9q9g3WW8I+Vti56sVADu1gVTxvHaZ?=
+ =?us-ascii?Q?7ngD1gdShGQBAvKsW2nZJyRmJNHAVQRhCw12F3M?=
+ =?us-ascii?Q?RF8uNa1OnNI7dxmqUyzwETYtQzTeHp2ZJTES8YP?=
+ =?us-ascii?Q?baZkMgzheYghUfIEWgVplraFbn+0uHrknpAE5rB?=
+ =?us-ascii?Q?462JLBNcn5BpXe5sAbEBDIb7RHBFJJMwBJsczpH?=
+ =?us-ascii?Q?r0zE4b4AkdcsF4Q=2Fsi4M+Uzq4i8kLygJwaJUHTC?=
+ =?us-ascii?Q?feO9+uDB5Eylx6YFDpoAoTT=2F=2F74BgLrxzUJx7NA?=
+ =?us-ascii?Q?ht2YH+b+pP8J9sKD75nuh3ODiCL5ekvbZs+ieCW?=
+ =?us-ascii?Q?ombaOBkAxLia0kg=3D?=
+To: dolev.tenenboim@gmail.com
+X-Entity-ID: u001.uNWTWLAPVnUUGFJYzhr9gw==
+
+<!DOCTYPE html><html style=3D"height: 100% !important; width: 100% !importa=
+nt; font-family: &#39;Helvetica Neue&#39;, Helvetica, system-ui, -apple-sys=
+tem, Arial, sans-serif; font-weight: 400; font-style: normal; line-height: =
+1.5; font-size: 16px; overflow-wrap: break-word; word-wrap: break-word; wor=
+d-spacing: normal; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; margin: 0 auto; padding: 0;"><head>
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8=
+"/>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0"/>
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge"/>
+    <meta name=3D"format-detection" content=3D"telephone=3Dno, date=3Dno, a=
+ddress=3Dno, email=3Dno, url=3Dno"/>
+    <!-- fixes email not full width ios gmail -->
+    <meta name=3D"x-apple-disable-message-reformatting"/>
+    <title></title>
+
+    <!-- Theme-Name: shopify --><!-- Theme-Version: 1.20 -->
+
+    <!-- Outlook font fallback -->
+    <!--[if mso]>
+      <style>
+        * {
+            font-family:sans-serif !important;
+        }
+      </style>
+    <![endif]-->
+
+    <style type=3D"text/css" data-shopify-email=3D"" data-premailer=3D"igno=
+re"> /* Desktop column classes need to be on top of the one in the media qu=
+ery for mobile. */ .one-col .column { max-width: 100% !important; } .two-co=
+l .column { max-width: 50% !important; } .three-col .column { max-width: 33=
+.3% !important; } .desktop-and-mobile-grid-padding { padding-top: 20px; } .=
+desktop-and-mobile-grid-loose-padding { padding-top: 25px; } .single-column=
+-grid-padding { padding-top: 20px; } .image--circle { border-radius: 600px;=
+ } .image--arch { border-top-left-radius: 300px; border-top-right-radius: 3=
+00px; } .image--round { border-radius: 16px; } .desktop-hide { display: non=
+e !important; } .button-narrow { width: 260px; max-width:100%; } .button-wi=
+de { width: 338px; max-width:100%; } .button-fixed { width: 100% !important=
+; max-width: 100% !important; } @media screen and (max-width:480px) { u~div=
+ .full-wrap { min-width:100vw; } div>u~div .full-wrap { min-width:100%; } .=
+email-container { width:100% !important; margin:auto !important; } .column-=
+container-left { padding-left:15px !important; } .column-container-right { =
+padding-right:15px !important; } .mobile-image-buffer { padding: 0px 8px !i=
+mportant; } .stack-column { display:block !important; width:100% !important=
+; max-width:100% !important; text-align:left !important; } .button-full-wid=
+th { width:100% !important; text-align:center !important; margin-left:auto =
+!important; margin-right:auto !important; float:none !important; } .button-=
+narrow, .button-wide { width: auto !important; max-width: 100% !important; =
+} .button-mobile-column { padding: 0 !important; } .mobile-hide { display:n=
+one !important; } .desktop-hide { display: block !important; } .image { wid=
+th:100% !important; height:auto !important; } .mobile-column-padding { padd=
+ing: 0 !important; } .mobile-text-column-override { padding: 0 15px !import=
+ant; } .one-col .column { max-width: 100% !important; } .two-col .column { =
+max-width: 50% !important; } .two-col.wrap-mobile .column { max-width: 100%=
+ !important; } .mobile-column-padding-top { padding-top: 30px !important; }=
+ .three-col .column { max-width: 50% !important; } .mobile-grid-padding { p=
+adding-top: 20px; } .mobile-grid-loose-padding, .desktop-and-mobile-grid-lo=
+ose-padding { padding-top: 30px; } .mobile-text-column-padding { padding: 1=
+5px 15px 0px 15px !important; } } /* Work-around for email clients meddling=
+ in triggered links. */ a[x-apple-data-detectors], .unstyle-auto-detected-l=
+inks a, .aBn { border-bottom: 0 !important; cursor: default !important; col=
+or: inherit !important; text-decoration: none !important; font-size: inheri=
+t !important; font-family: inherit !important; font-weight: inherit !import=
+ant; line-height: inherit !important; } /* Prevents Gmail from changing the=
+ text color in conversation threads. */ .im { color: inherit !important; } =
+/* Prevents Gmail from displaying a download button on large, non-linked im=
+ages. */ .a6S { display: none !important; opacity: 0.01 !important; } /* Pr=
+events GMail from overriding the color of links */ .ii a[href] { color: inh=
+erit; } .inheritLinkStyle a { color:inherit !important; text-decoration: no=
+ne !important; } /* Center on Android 4.4 */ div[style*=3D'margin:16px 0'] =
+{ margin: 0 !important; } .nav-menu-with-hover:hover { text-decoration: und=
+erline; } </style>
+
+   =20
+
+   =20
+  <style type=3D"text/css" data-shopify-email=3D"" data-premailer=3D"ignore=
+"> .rte-link-color-overwrite a { color: #333333 !important; text-decoration=
+: none !important; } </style>
+<style>body {
+margin: 0 auto !important; padding: 0 !important; height: 100% !important; =
+width: 100% !important; font-family: 'Helvetica Neue', Helvetica, system-ui=
+, -apple-system, Arial, sans-serif; font-weight: 400; font-style: normal; l=
+ine-height: 1.5; font-size: 16px; overflow-wrap: break-word; word-wrap: bre=
+ak-word; word-spacing: normal;
+}
+img {
+-ms-interpolation-mode: bicubic;
+}
+img {
+border: 0; height: auto; outline: none; text-decoration: none;
+}
+</style>
+</head>
+
+  <body width=3D"100%" style=3D"background-color: #ffffff; height: 100% !im=
+portant; width: 100% !important; font-family: &#39;Helvetica Neue&#39;, Hel=
+vetica, system-ui, -apple-system, Arial, sans-serif; font-weight: 400; font=
+-style: normal; line-height: 1.5; font-size: 16px; overflow-wrap: break-wor=
+d; word-wrap: break-word; word-spacing: normal; -ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; margin: 0 auto; padding: 0;" class=3D"full=
+-wrap">
+    <div style=3D"display: none; font-size: 1px; line-height: 1px; max-heig=
+ht: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-=
+family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 1=
+00%;">We&#39;ll give you a 20% discount as a first-time customer if you ord=
+er now!</div>
+<div style=3D"display: none; max-height: 0px; overflow: hidden; -ms-text-si=
+ze-adjust: 100%; -webkit-text-size-adjust: 100%;">=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=CD=8F=E2=80=87=
+=CD=8F=E2=80=87=CD=8F=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
+=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
+=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=A0</div>
+
+    <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center=
+" width=3D"100%" style=3D"background-color: #ffffff; -ms-text-size-adjust: =
+100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso=
+-table-rspace: 0pt !important; border-spacing: 0 !important; border-collaps=
+e: collapse !important; table-layout: fixed !important; margin: auto;" clas=
+s=3D"full-wrap">
+      <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adj=
+ust: 100%;">
+        <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; v=
+ertical-align: top;">
+         =20
+
+
+
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" wi=
+dth=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; border-spacing: 0 !important; border-collapse: co=
+llapse !important; table-layout: fixed !important; margin: auto;" class=3D"=
+email-container">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; verti=
+cal-align: top;">
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"cent=
+er" width=3D"600" style=3D"background-color: #ffffff; color: #333333; -ms-t=
+ext-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0p=
+t !important; mso-table-rspace: 0pt !important; border-spacing: 0 !importan=
+t; border-collapse: collapse !important; table-layout: fixed !important; ma=
+rgin: auto;" class=3D"email-container">
+        <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">
+          <td style=3D"font-size: 25px; line-height: 1.32; font-family: sys=
+tem-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-s=
+erif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;, &#39;Segoe UI =
+Symbol&#39;; font-weight: 400; font-style: normal; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-t=
+able-rspace: 0pt !important; vertical-align: top; padding: 25px 60px;" alig=
+n=3D"center" class=3D"column-container-left column-container-right">
+            <a href=3D"https://www.madeinmarket.eu/_t/c/v3/AAAZoLpYOyzCtWwE=
+Y2MnbLotrsTKphHPS8P0H0vGSvZSF1_Tft5AfoWzMombZu0mDc8xcW4aVYiH4yAsSkhIoL2qiPB=
+4-JVcRj6rWrWUWpZz0IT4QDiXbre_Ud3uv5A15SmiorVfusYKR86E_h59BzYB6hfrGn5yHELJqy=
+g6inxG_PVNKo2wBn8nYf5md4Elzy0j1DfP7SSysahL-0F4Pa4KVKCjW9Xer4Mj3haVM5HoKq_lV=
+-71i_7XOpHxsPAZMfT7P4VpleJr_0AcEjo5uWXUiuFupCw1dkl3iTC7REHNfACVbTU01YTicv_B=
+2AgcEj5HqIlLR0AKE7DHEua0JqGU1_VkDAIBSWp6Hs5I2jqry-9ZCZHGy8zpE8miFWR7w45ODGz=
+xpNFLpGKPyyaQl3k9j9GlixZY--tIRFAl9Mk05E73_cPqy7UobgvaTuGNd5weAHpGlBJiy1vUgp=
+bazpgk-u5XWoPfQG-1BSK4fBnAN89Lf22ZEIWGHuq3D21sgRUkLUU=3D" style=3D"color: #=
+333333; text-decoration: none; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%;" target=3D"_blank">
+             =20
+               =20
+                 =20
+                  <img src=3D"https://cdn.shopify.com/shopify-email/j0qxu1m=
+vkb4i6ydt57ghk4vlrqwl.png?width=3D960&amp;height=3D960" alt=3D"Made in Mark=
+et" border=3D"0" width=3D"115" height=3D"auto" style=3D"width: 115px; heigh=
+t: autopx; max-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%; -ms-interpolation-mode: bicubic; outline: none; text-decoratio=
+n: none; border-width: 0;"/>
+               =20
+             =20
+            </a>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+         =20
+           =20
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" wi=
+dth=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; border-spacing: 0 !important; border-collapse: co=
+llapse !important; table-layout: fixed !important; margin: auto;" class=3D"=
+email-container">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; verti=
+cal-align: top;">
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"cent=
+er" width=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust:=
+ 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; ms=
+o-table-rspace: 0pt !important; border-spacing: 0 !important; border-collap=
+se: collapse !important; table-layout: fixed !important; margin: auto;" cla=
+ss=3D"email-container">
+        <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">
+          <td style=3D"color: #333333; font-family: system-ui, -apple-syste=
+m, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif, &#39;Apple Col=
+or Emoji&#39;, &#39;Segoe UI Emoji&#39;, &#39;Segoe UI Symbol&#39;; font-we=
+ight: 400; font-style: normal; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !im=
+portant; vertical-align: top; padding: 40px 60px 10px;" align=3D"center" cl=
+ass=3D"column-container-left column-container-right">
+            <p style=3D"font-size: 16px; line-height: 1.5; -ms-text-size-ad=
+just: 100%; -webkit-text-size-adjust: 100%; margin: 0; padding: 0;"><span s=
+tyle=3D"color: rgb(0, 0, 0); -ms-text-size-adjust: 100%; -webkit-text-size-=
+adjust: 100%;">Hello </span>Dolev<span style=3D"color: rgb(0, 0, 0); -ms-te=
+xt-size-adjust: 100%; -webkit-text-size-adjust: 100%;">,<br style=3D"-ms-te=
+xt-size-adjust: 100%; -webkit-text-size-adjust: 100%;"/></span>We are delig=
+hted to welcome you to our store! Your shopping cart is still waiting for y=
+ou - and as a first-time customer you will receive a <strong style=3D"-ms-t=
+ext-size-adjust: 100%; -webkit-text-size-adjust: 100%;">one-off 20% discoun=
+t</strong> on your order.<br style=3D"-ms-text-size-adjust: 100%; -webkit-t=
+ext-size-adjust: 100%;"/><br style=3D"-ms-text-size-adjust: 100%; -webkit-t=
+ext-size-adjust: 100%;"/>Take advantage of this opportunity and secure your=
+ exclusive offer before it expires!<br style=3D"-ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%;"/><br style=3D"-ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%;"/><strong style=3D"-ms-text-size-adjust: 1=
+00%; -webkit-text-size-adjust: 100%;">Shop now &amp; save!</strong></p>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+
+
+
+
+<table cellspacing=3D"0" border=3D"0" align=3D"center" width=3D"600" class=
+=3D"email-container" style=3D"background-color: #ffffff; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important;=
+ mso-table-rspace: 0pt !important; border-spacing: 0 !important; border-col=
+lapse: collapse !important; table-layout: fixed !important; margin: auto;">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; verti=
+cal-align: top; padding: 0 0px;" class=3D" ">
+      <table cellspacing=3D"0" cellpadding=3D"0" align=3D"center" border=3D=
+"0" width=3D"100%" style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !impor=
+tant; border-spacing: 0 !important; border-collapse: collapse !important; t=
+able-layout: fixed !important;">
+        <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">
+          <td width=3D"100%" height=3D"30px" style=3D"border-collapse: coll=
+apse; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; m=
+so-line-height-rule: exactly; line-height: 20px; -ms-text-size-adjust: 100%=
+; -webkit-text-size-adjust: 100%; vertical-align: top;">
+            <!--[if gte mso 15]> =C2=A0 <![endif]-->
+          </td>
+        </tr>
+        <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%;">
+          <td border=3D"0" style=3D"height: 0; border-top-width: 2px; borde=
+r-top-color: #a3a3a3; border-top-style: solid; -ms-text-size-adjust: 100%; =
+-webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-table=
+-rspace: 0pt !important; vertical-align: top;"></td>
+        </tr>
+        <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%;">
+          <td width=3D"100%" height=3D"30px" style=3D"border-collapse: coll=
+apse; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; m=
+so-line-height-rule: exactly; line-height: 20px; -ms-text-size-adjust: 100%=
+; -webkit-text-size-adjust: 100%; vertical-align: top;">
+            <!--[if gte mso 15]> =C2=A0 <![endif]-->
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" wi=
+dth=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; border-spacing: 0 !important; border-collapse: co=
+llapse !important; table-layout: fixed !important; margin: auto;" class=3D"=
+email-container">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; verti=
+cal-align: top;">
+     =20
+
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"cent=
+er" width=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust:=
+ 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; ms=
+o-table-rspace: 0pt !important; border-spacing: 0 !important; border-collap=
+se: collapse !important; table-layout: fixed !important; margin: auto;" cla=
+ss=3D"email-container">
+       =20
+         =20
+         =20
+         =20
+          <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size=
+-adjust: 100%;">
+            <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !importan=
+t; vertical-align: top; padding: 10px 60px 0;" align=3D"center" class=3D"co=
+lumn-container-left column-container-right">
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"button-full-width" style=3D"-ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !i=
+mportant; border-spacing: 0 !important; border-collapse: collapse !importan=
+t; table-layout: fixed !important;">
+                <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-tex=
+t-size-adjust: 100%;">
+                  <td align=3D"center" style=3D"-ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; vertical-align: top;">
+                    <div style=3D"text-align: center; font-family: system-u=
+i, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif,=
+ &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;, &#39;Segoe UI Symbo=
+l&#39;; font-weight: 400; font-style: normal; -ms-text-size-adjust: 100%; -=
+webkit-text-size-adjust: 100%;">
+                     =20
+                       =20
+                          <div style=3D"padding-top: 0px; color: #333333; f=
+ont-family: system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica=
+, Arial, sans-serif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;,=
+ &#39;Segoe UI Symbol&#39;; font-weight: 400; font-style: normal; -ms-text-=
+size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                            <p style=3D"font-size: 31px; line-height: 1.258=
+; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; margin: 0; pa=
+dding: 0;"><strong style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">SPECIAL OFFER</strong></p>
+                          </div>
+                       =20
+                       =20
+                         =20
+                         =20
+                          <div style=3D"padding-top: 20px; color: #333333; =
+font-family: system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetic=
+a, Arial, sans-serif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;=
+, &#39;Segoe UI Symbol&#39;; font-weight: 400; font-style: normal; -ms-text=
+-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                            <p style=3D"font-size: 28px; line-height: 1.286=
+; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; margin: 0; pa=
+dding: 0;"><strong style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">20% off your entire order</strong></p>
+                          </div>
+                       =20
+                       =20
+                         =20
+                         =20
+                          <div style=3D"padding-top: 20px; color: #333333; =
+font-family: system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetic=
+a, Arial, sans-serif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;=
+, &#39;Segoe UI Symbol&#39;; font-weight: 400; font-style: normal; -ms-text=
+-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                            <p style=3D"font-size: 16px; line-height: 1.444=
+; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; margin: 0; pa=
+dding: 0;">Use code: <strong style=3D"-ms-text-size-adjust: 100%; -webkit-t=
+ext-size-adjust: 100%;"><strong style=3D"-ms-text-size-adjust: 100%; -webki=
+t-text-size-adjust: 100%;">MadeinMarket20</strong></strong> at checkout, or=
+ click the link below to automatically apply the discount to your order.</p=
+>
+                          </div>
+                       =20
+                     =20
+                    </div>
+                  </td>
+                </tr>
+              </tbody></table>
+            </td>
+          </tr>
+
+         =20
+            <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%;">
+              <td height=3D"20" style=3D"border-collapse: collapse; mso-tab=
+le-lspace: 0pt !important; mso-table-rspace: 0pt !important; mso-line-heigh=
+t-rule: exactly; line-height: 40px; -ms-text-size-adjust: 100%; -webkit-tex=
+t-size-adjust: 100%; vertical-align: top;">
+                <!--[if gte mso 15]> =C2=A0 <![endif]-->
+              </td>
+            </tr>
+         =20
+       =20
+
+       =20
+         =20
+         =20
+          <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust=
+: 100%;">
+            <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !importan=
+t; vertical-align: top; padding: 0 60px;" align=3D"center" class=3D"column-=
+container-left column-container-right">
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"button-full-width" style=3D"-ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !i=
+mportant; border-spacing: 0 !important; border-collapse: collapse !importan=
+t; table-layout: fixed !important;">
+                <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-tex=
+t-size-adjust: 100%;">
+                  <td align=3D"center" style=3D"border-radius: 12px; backgr=
+ound-color: #f25c54; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; v=
+ertical-align: top;">
+                   =20
+                      <a class=3D"button-with-rich-text " href=3D"https://w=
+ww.madeinmarket.eu/_t/c/v3/AACSiUHR2eEM3DGbdN02tudbjxxRDjE48H7p0r8nl88thOWI=
+sKRBIh4pGyVu-udM3JTHm64FAP2BMkDVio1aA91wi5IRuW1T23FvOjOmelaEKHphmzfsmCxScIp=
+_7Vbc_tvE8KQ0NmQGxOVgrTALs57Ose7JdUamcKBXODW2hKxpXQqjaBf1oruE4oxbECLrfIMyPT=
+nAJ_F_mDVUqiT3FvUP1uQS80UKu0d1Nt5MV2xixKpYls2vXfPoByr8b0hwBaBbBDz9TTa2OUUmt=
+VlgVc4Ein2X1mFwoujlluzTkr8YEysjGApTePLYC_PWMSQImZ4hmURuNsdEaBQW7_r6WJmP3yMh=
+HFZP64gyKoURT8235ZNpwbtKApr-UhjgLgQI_t2ye8pSmudfgKLbc8BKkCty-BFSVZkM5X6BF0g=
+AdpvW2vR3is6qZUeucnlgpWdfeYRqVMvclvuWUWbgcvkG5AA5OCQlKOzNkdnevVlWzKeTiBxkZe=
+nOrzAy3VdhQMb8EV61UIpjJvxA1PMq9Au645cZbC_C7HyMgonpEiw=3D" target=3D"_blank"=
+ style=3D"font-size: 16px; color: #ffffff; text-decoration: none; border-ra=
+dius: 12px; background-color: #f25c54; display: block; min-width: 80px; fon=
+t-family: system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, =
+Arial, sans-serif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;, &=
+#39;Segoe UI Symbol&#39;; font-weight: 700; font-style: normal; word-break:=
+ break-word; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; pa=
+dding: 14px 28px; border: 3px solid #f25c54;">
+                        Claim Your Discount
+                      </a>
+                   =20
+                  </td>
+                </tr>
+              </tbody></table>
+            </td>
+          </tr>
+
+         =20
+            <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%;">
+              <td height=3D"16" style=3D"border-collapse: collapse; mso-tab=
+le-lspace: 0pt !important; mso-table-rspace: 0pt !important; mso-line-heigh=
+t-rule: exactly; line-height: 40px; -ms-text-size-adjust: 100%; -webkit-tex=
+t-size-adjust: 100%; vertical-align: top;">
+                <!--[if gte mso 15]> =C2=A0 <![endif]-->
+              </td>
+            </tr>
+         =20
+       =20
+
+       =20
+         =20
+          <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust=
+: 100%;">
+            <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !importan=
+t; vertical-align: top; padding: 0 60px 10px;" align=3D"center" class=3D"co=
+lumn-container-left column-container-right">
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"button-full-width" style=3D"-ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !i=
+mportant; border-spacing: 0 !important; border-collapse: collapse !importan=
+t; table-layout: fixed !important;">
+                <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-tex=
+t-size-adjust: 100%;">
+                  <td align=3D"center" style=3D"-ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; vertical-align: top;">
+                    <div style=3D"text-align: center; font-family: system-u=
+i, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif,=
+ &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;, &#39;Segoe UI Symbo=
+l&#39;; font-weight: 400; font-style: normal; -ms-text-size-adjust: 100%; -=
+webkit-text-size-adjust: 100%;">
+                     =20
+                        <div style=3D"color: #333333; font-family: system-u=
+i, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif,=
+ &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;, &#39;Segoe UI Symbo=
+l&#39;; font-weight: 400; font-style: normal; -ms-text-size-adjust: 100%; -=
+webkit-text-size-adjust: 100%;">
+                          <p style=3D"font-size: 12px; line-height: 1.5; -m=
+s-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; margin: 0; paddin=
+g: 0;">Offer valid from Feb 18, 2025</p>
+                        </div>
+                     =20
+                    </div>
+                  </td>
+                </tr>
+              </tbody></table>
+            </td>
+          </tr>
+       =20
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+
+
+
+
+<table cellspacing=3D"0" border=3D"0" align=3D"center" width=3D"600" class=
+=3D"email-container" style=3D"background-color: #ffffff; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important;=
+ mso-table-rspace: 0pt !important; border-spacing: 0 !important; border-col=
+lapse: collapse !important; table-layout: fixed !important; margin: auto;">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; verti=
+cal-align: top; padding: 0 0px;" class=3D" ">
+      <table cellspacing=3D"0" cellpadding=3D"0" align=3D"center" border=3D=
+"0" width=3D"100%" style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !impor=
+tant; border-spacing: 0 !important; border-collapse: collapse !important; t=
+able-layout: fixed !important;">
+        <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">
+          <td width=3D"100%" height=3D"30px" style=3D"border-collapse: coll=
+apse; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; m=
+so-line-height-rule: exactly; line-height: 20px; -ms-text-size-adjust: 100%=
+; -webkit-text-size-adjust: 100%; vertical-align: top;">
+            <!--[if gte mso 15]> =C2=A0 <![endif]-->
+          </td>
+        </tr>
+        <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%;">
+          <td border=3D"0" style=3D"height: 0; border-top-width: 2px; borde=
+r-top-color: #a3a3a3; border-top-style: solid; -ms-text-size-adjust: 100%; =
+-webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-table=
+-rspace: 0pt !important; vertical-align: top;"></td>
+        </tr>
+        <tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%;">
+          <td width=3D"100%" height=3D"30px" style=3D"border-collapse: coll=
+apse; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; m=
+so-line-height-rule: exactly; line-height: 20px; -ms-text-size-adjust: 100%=
+; -webkit-text-size-adjust: 100%; vertical-align: top;">
+            <!--[if gte mso 15]> =C2=A0 <![endif]-->
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+
+
+
+  <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" =
+width=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust: 100=
+%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-ta=
+ble-rspace: 0pt !important; border-spacing: 0 !important; border-collapse: =
+collapse !important; table-layout: fixed !important; margin: auto;" class=
+=3D"email-container">
+    <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjus=
+t: 100%;">
+      <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; ver=
+tical-align: top;">
+        <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"ce=
+nter" width=3D"600" style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-=
+adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !impo=
+rtant; border-spacing: 0 !important; border-collapse: collapse !important; =
+table-layout: fixed !important; margin: auto;" class=3D"email-container">
+          <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size=
+-adjust: 100%;">
+            <td width=3D"600" border=3D"0" align=3D"center" style=3D"width:=
+ 100%; max-width: 600px; -ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !importan=
+t; vertical-align: top;">
+             =20
+               =20
+                <div style=3D"width: 600px; max-width: 100%; -ms-text-size-=
+adjust: 100%; -webkit-text-size-adjust: 100%;">
+                  <p style=3D"text-align: center; -ms-text-size-adjust: 100=
+%; -webkit-text-size-adjust: 100%; line-height: 1.5; margin: 0; padding: 0;=
+"><a href=3D"https://www.madeinmarket.eu/_t/c/v3/AADxAUjhNDU7QGyOjXLYPXLi1J=
+ALewZLjAQ6hSTUh4GwQVp5T5_NQpy192N4roeetzoCETdqjYpF-b6CG_Jn_SJbKCvfaC1lN2gXS=
+VUqhmGpCLrnNOWfwmBYoS1MEfEyiAVOlbEo25S1l_Us7GyzvKX3Yq4wYq3ebZqY4WG4_i7vm2tc=
+yiOwXHatzdQT6TDSWaVvl2A7CbEzEO0GxKla2zKcXk6g0gZR6wPrEG-B2EWdYiNxvpclerCBSFD=
+OMw0x1KihFACXCjaZIaXDNkexqQMNjmhYDXLtZ5YTgvCiL6HNW0sUNZ-A5hMUtWwFg_IVYsQRmZ=
+8mYwerXFBaXcXb_yYAOOAQ39a4qsvfDhsA7t-_z6p93GbmtEBKsS_ioK489BUBo05XogmtEmuhc=
+-MSdeDJLP-XkImA2l6dfyVxareIeyYmRQ=3D=3D" style=3D"text-decoration: none; -m=
+s-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"><img src=3D"http=
+s://emailsignature.trustpilot.com/newsletter/en-US/1/657739c9b851e37d3694e5=
+be/text1@2x.png" height=3D"18" alt=3D"Human score" style=3D"max-height: 18p=
+x; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; -ms-interpol=
+ation-mode: bicubic; height: auto; outline: none; text-decoration: none; bo=
+rder-width: 0;"/></a> =C2=A0=C2=A0 <a href=3D"https://www.madeinmarket.eu/_=
+t/c/v3/AACFtDOmV5LpGR-3AH3jkSSQWxrdwjGMkJQHkcg9-QWBmSqin6FGeZISdz0rR9YD7sw-=
+R8TGuuN2I7CrGvNv-uU4YX9v317k7IgBTDrGEKQzy6MyfQJ0Ag1uvlK3n1aLmOg-APTpMj5pcWV=
+fGG9upAfc_jo6WwD2T9LylXfeOzb6BrUl81gm4HN2Td83S3ZdRxnn3Ogku58hyUCaqJHuVPXEbm=
+MzZODiq1wX3ioCY5Wfpw3L-tZP-jAIdi1ZK-1a0eFr6VkW-SMj7xMhzJzEJlt3r3durgEfywoJq=
+LqBtUA1xxsSnaCAJBBwBhQhMtQgTDFIfvd0nozT7PIB-7jgoLcqqqIgDKkC5-ITvBq1K_GnhD03=
+CA3WKvRWZvyAUVTs5b-qGFM3_lhwGmZnXoATd-vOaN1g8xtecmPYRnxUt_qPTs5KOw=3D=3D" s=
+tyle=3D"text-decoration: none; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%;"><img src=3D"https://emailsignature.trustpilot.com/newslett=
+er/en-US/1/657739c9b851e37d3694e5be/stars@2x.png" height=3D"20" alt=3D"Trus=
+tpilot Stars" style=3D"max-height: 20px; -ms-text-size-adjust: 100%; -webki=
+t-text-size-adjust: 100%; -ms-interpolation-mode: bicubic; height: auto; ou=
+tline: none; text-decoration: none; border-width: 0;"/></a> =C2=A0=C2=A0 <s=
+pan style=3D"display: inline-block; -ms-text-size-adjust: 100%; -webkit-tex=
+t-size-adjust: 100%;"><a href=3D"https://www.madeinmarket.eu/_t/c/v3/AAC0Gy=
+9Zk9XvaF9ajBtwqi4hGJEEdY6fH4FcvdAbIWpo4kytinZA0fXcOpgUyvkgP32m6W3_kxhhgfJ0u=
+e8ZJBPSggV21bxzpzIxx-fey9llOkSYl_PR5kqGZYXRsJdBSL4fkOz_Wpo4er18Nsp2xZrEF7Ob=
+m1ZcsRJWLxEPKWbZlo7Cp4RbMfPjMcdU0RWKhwHFZGZH9a8vC_0F33f6Orz9LgqJkBY0Y3RqzMv=
+6Wy0UfIhRbKqHMRz6devE35SFlGAhkUTj-H-zKs4bcxNBtsUxdP5mQeCKo08kU0x-ecz_sRJjSO=
+F6V_HLmSfVdjJAq7EIoUaBCpJPo7xqAJMMJw8_eGpxNz9gnr70Q_GMyOCsOM54VqGY1EbSN1bx3=
+ay_3-akYsLiTugDGoKbnmfgfkRH4oAuUoG9BMAcuNPKJvPa_CHp8g=3D=3D" style=3D"text-=
+decoration: none; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100=
+%;"><img src=3D"https://emailsignature.trustpilot.com/newsletter/en-US/1/65=
+7739c9b851e37d3694e5be/text2@2x.png" height=3D"18" alt=3D"number of reviews=
+" style=3D"max-height: 18px; -ms-text-size-adjust: 100%; -webkit-text-size-=
+adjust: 100%; -ms-interpolation-mode: bicubic; height: auto; outline: none;=
+ text-decoration: none; border-width: 0;"/></a> =C2=A0=C2=A0 <a href=3D"htt=
+ps://www.madeinmarket.eu/_t/c/v3/AADOu13hoD4shIL0TZpUsFM075QGKe2av2rZSkCf9Z=
+WLysjnJ98nPO48-dT8xg9U06PUHwo_dY_T4ng6oJjJXrkwENOxEKdcUV0TqoEspnr7EC61jLKQq=
+uAb32-f0Y-NRWimYsvr3HTrQdDmK0tBZkoxtxnW5K6R18u88N1oO3V8_voVxH0fan42vbhkzIHF=
+RvqUSxn5o39LKDk0uh72RcXNENniXulGD2jAt3SKwjmcNzf7S_jeD8CM5dSof2YJmfs256f8PeJ=
+ykrWZQN7SSPDjP0CKYHZrn_dnk-qQ3tJF54zWMDm0U6kbOaYtc6vVRTpMqOQ2tZ-54_L-OlAs7c=
+aZ8lJ4o7MYumXZbBU5xnzTKLqkp8qEpFRYwsm5w_06G9dvozczOhMenuUe52rGX7sfh67GfC3hD=
+OSQEGeOmw2zuS9kCg=3D=3D" style=3D"text-decoration: none; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%;"><img src=3D"https://emailsignatu=
+re.trustpilot.com/brand/n/1/logo.png" height=3D"20" alt=3D"Trustpilot Logo"=
+ style=3D"max-height: 20px; display: inline-block; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%; -ms-interpolation-mode: bicubic; height=
+: auto; outline: none; text-decoration: none; border-width: 0;"/></a></span=
+></p>
+                </div>
+             =20
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+  </tbody></table>
+
+
+
+
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" wi=
+dth=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; border-spacing: 0 !important; border-collapse: co=
+llapse !important; table-layout: fixed !important; margin: auto;" class=3D"=
+email-container">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; verti=
+cal-align: top;">
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"cent=
+er" width=3D"600" style=3D"background-color: #ffffff; -ms-text-size-adjust:=
+ 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; ms=
+o-table-rspace: 0pt !important; border-spacing: 0 !important; border-collap=
+se: collapse !important; table-layout: fixed !important; margin: auto;" cla=
+ss=3D"email-container">
+        <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">
+          <td style=3D"color: #333333; font-family: system-ui, -apple-syste=
+m, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif, &#39;Apple Col=
+or Emoji&#39;, &#39;Segoe UI Emoji&#39;, &#39;Segoe UI Symbol&#39;; font-we=
+ight: 400; font-style: normal; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !im=
+portant; vertical-align: top; padding: 10px 60px 40px;" align=3D"center" cl=
+ass=3D"column-container-left column-container-right">
+            <p style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjus=
+t: 100%; line-height: 1.5; margin: 0; padding: 0;">Thank you for your trust=
+ - we look forward to your order! Your Made in Market team</p>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+         =20
+         =20
+
+
+
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" wi=
+dth=3D"600" style=3D"background-color: #f7f7f7; -ms-text-size-adjust: 100%;=
+ -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-tabl=
+e-rspace: 0pt !important; border-spacing: 0 !important; border-collapse: co=
+llapse !important; table-layout: fixed !important; margin: auto; padding: 2=
+4px 0;" class=3D"email-container">
+  <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%;">
+    <td style=3D"background-color: #f7f7f7; -ms-text-size-adjust: 100%; -we=
+bkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rs=
+pace: 0pt !important; vertical-align: top; padding: 24px 0;">
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"cent=
+er" width=3D"600" style=3D"background-color: #f7f7f7; -ms-text-size-adjust:=
+ 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; ms=
+o-table-rspace: 0pt !important; border-spacing: 0 !important; border-collap=
+se: collapse !important; table-layout: fixed !important; margin: auto;" cla=
+ss=3D"email-container">
+        <tbody><tr style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-a=
+djust: 100%;">
+          <td style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust=
+: 100%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important;=
+ vertical-align: top; padding: 0 60px;" align=3D"left" class=3D"column-cont=
+ainer-left column-container-right">
+           =20
+           =20
+              <table role=3D"presentation" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" style=3D"-ms-text-size-adjust: 100%; -webki=
+t-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-rspac=
+e: 0pt !important; border-spacing: 0 !important; border-collapse: collapse =
+!important; table-layout: fixed !important;">
+                <tbody><tr align=3D"left" style=3D"-ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%;">
+                  <td valign=3D"top" style=3D"width: 100%; -ms-text-size-ad=
+just: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !importan=
+t; mso-table-rspace: 0pt !important; vertical-align: top;">
+                   =20
+
+
+
+
+<!--[if mso]>
+  <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" align=3D"center" width=3D"100%">
+  <tr>
+<![endif]-->
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+
+
+<!--[if mso]>
+  </tr>
+  </table>
+<![endif]-->
+
+                  </td>
+                </tr>
+              </tbody></table>
+           =20
+
+           =20
+           =20
+              <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=
+=3D"100%" style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; bor=
+der-spacing: 0 !important; border-collapse: collapse !important; table-layo=
+ut: fixed !important;">
+                <tbody><tr align=3D"left" style=3D"-ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%;">
+                  <td valign=3D"top" style=3D"width: 100%; padding-bottom: =
+16px; font-family: system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, He=
+lvetica, Arial, sans-serif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoj=
+i&#39;, &#39;Segoe UI Symbol&#39;; font-weight: 400; font-style: normal; fo=
+nt-size: 14px; mso-height-rule: exactly; line-height: 1.5; -ms-text-size-ad=
+just: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !importan=
+t; mso-table-rspace: 0pt !important; vertical-align: top;">
+                   =20
+
+
+
+
+
+
+
+
+
+
+<div style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+  <div style=3D"color: #333333; -ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%;">
+ =20
+    <span style=3D"display: block; -ms-text-size-adjust: 100%; -webkit-text=
+-size-adjust: 100%;">
+      Made in Market
+    </span>
+ =20
+
+ =20
+
+ =20
+    <span style=3D"display: block; -ms-text-size-adjust: 100%; -webkit-text=
+-size-adjust: 100%;">
+        Parque Industrial Arm=C3=A9s Bloco 3 Armaz=C3=A9m S, Rua Rosa do Ul=
+meiro 20/24, 2715-711 Sintra, Lisbon, Portugal
+    </span>
+ =20
+  </div>
+
+  <div style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+">
+ =20
+
+ =20
+
+ =20
+  </div>
+</div>
+
+                  </td>
+                </tr>
+              </tbody></table>
+           =20
+
+           =20
+           =20
+
+           =20
+            <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=
+=3D"100%" style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; bor=
+der-spacing: 0 !important; border-collapse: collapse !important; table-layo=
+ut: fixed !important;">
+              <tbody><tr align=3D"left" style=3D"-ms-text-size-adjust: 100%=
+; -webkit-text-size-adjust: 100%;">
+                <td valign=3D"top" style=3D"width: 100%; color: #333333; fo=
+nt-family: system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica,=
+ Arial, sans-serif, &#39;Apple Color Emoji&#39;, &#39;Segoe UI Emoji&#39;, =
+&#39;Segoe UI Symbol&#39;; font-weight: 400; font-style: normal; font-size:=
+ 14px; mso-height-rule: exactly; line-height: 1.5; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-t=
+able-rspace: 0pt !important; vertical-align: top;">
+                 =20
+
+
+
+
+
+
+
+
+
+  <div style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+">
+   =20
+
+   =20
+     =20
+  <a style=3D"color: #333333; -ms-text-size-adjust: 100%; -webkit-text-size=
+-adjust: 100%; text-decoration: underline;" target=3D"_blank" href=3D"https=
+://www.madeinmarket.eu/account/unsubscribe?token=3DiCVxIDMaqwY_zeZyg5SnZF7i=
+NxXFI1eviViUc9gGMuISshxGLhj2q2akXuJE7hYxXyYPqgvRSq1p0UZeDBmvlMXctrYB9l6Pk1R=
+JMNpNaC0%3D&amp;se_activity_id=3D187176157508&amp;utm_source=3Dshopify_emai=
+l&amp;utm_medium=3Demail&amp;utm_campaign=3DNow+with+a+20%25+discount%21+-+=
+Your+shopping+cart+is+waiting_187176157508">
+    Unsubscribe
+  </a>
+
+   =20
+
+   =20
+      <div style=3D"-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 1=
+00%;">
+       =20
+    <span style=3D"display: inline-block; -ms-text-size-adjust: 100%; -webk=
+it-text-size-adjust: 100%;">=C2=A9 2025</span>
+    <span style=3D"display: inline-block; -ms-text-size-adjust: 100%; -webk=
+it-text-size-adjust: 100%;">Made in Market</span>
+
+      </div>
+   =20
+  </div>
+
+
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+        </td>
+      </tr>
+
+      <!-- SHOPIFY // ANDROID 6.0 Force Desktop -->
+      <tr style=3D"line-height: 1px; mso-line-height-rule: exactly; -ms-tex=
+t-size-adjust: 100%; -webkit-text-size-adjust: 100%;" class=3D"mobile-hide"=
+>
+        <td align=3D"center" style=3D"min-width: 600px; font-size: 1px; lin=
+e-height: 1px; mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -=
+webkit-text-size-adjust: 100%; mso-table-lspace: 0pt !important; mso-table-=
+rspace: 0pt !important; vertical-align: top;">
+          <img src=3D"https://cdn.shopify.com/shopify-email/86rpof87eu76tbo=
+lw18xn73b60o2.png" alt=3D"" width=3D"600" height=3D"1" style=3D"display: bl=
+ock; width: 600px; height: 1px; -ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%; -ms-interpolation-mode: bicubic; outline: none; text-decor=
+ation: none; border-width: 0;" border=3D"0"/>
+        </td>
+      </tr>
+    </tbody></table>
+
+    <!--Made with =F0=9F=92=8C by Shopify-->
+ =20
+
+<img src=3D"https://www.madeinmarket.eu/_t/open/A1020005-187904A8C2E337BB-C=
+ECEADC6?en=3DAABMa5vupNyrSMoc0GJSdYwDXEXZ9rnVatsJ%2F9sfhrMXCovDBOIhdxK3Z6d2=
+s8OsKXuHReX4OMOFSypYZ200xKAXirz4OSu6PlZTMdloN%2FmxqGVDjdyeyKm8G88rcM%2BYRSc=
+VeN9b8xt05v6LRGQ%2BWPhGge3EpmmjKkf3MELgkiTJV2L55eG6tMmQHTsfIwx8yiqO5jXsyh%2=
+FYW%2BjHLlgnCgFR4qXEhLktsmTf%2FVgl7zjn4cI1DSQPHogzQkRloML1GMwFnzm%2BMJKtfLT=
+Qx76IkIHstmp0iwiUZNQCBsplvKVFptep%2FNN%2BL9WNrK2BbLGconTXKc5VXIsjGujB%2FNP7=
+8SD8L7K0uPfh8q02qIFvR2tPoLpHE%2FicHQw%2BvXanvAYFDGFOMu1t5WBiu3obJvBUhjYCbBY=
+d3tTqGIsbm01Jk90LccxWymHVQZI4i5NZg9jxr9mMIQgCWljQs%2BwMgzOG%2Fobq1sz2uBJM9Y=
+N5vDk3ckNMYhzC1Yi2QeKY6lkkus%2F6k8Q6y%2FVvuJ%2Bj8KbhBLVf0Ach6XBTNyp3LO%2FnK=
+MayxNzWZVaWtonuUAMmHD79iKFvWkC0yi9EmKRn9U6bLL2yT5vWG59DLyT%2FjA%3D%3D" styl=
+e=3D"display:none"/></body></html>

@@ -1,0 +1,393 @@
+Delivered-To: dolev.tenenboim@gmail.com
+Received: by 2002:a05:7010:3c6:b0:4d4:9cd1:ae2e with SMTP id v6csp405853mdi;
+        Wed, 26 Nov 2025 07:57:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFZbqvr6bLOXe1nP49w4JtjE3Q8ogImIjrHX8k1ryQsxFkE9A5YH0ir17e7On7AbY12ijxU
+X-Received: by 2002:a05:6638:410e:b0:510:67b5:cc78 with SMTP id 8926c6da1cb9f-5b96a05f9bamr7181057173.4.1764172634968;
+        Wed, 26 Nov 2025 07:57:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1764172634; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kb6kn2643Z0rbgjduXBFqsMizJ14jYYTIraQDqjHelY6Xi3GOCRz/H+aLhEC//G+ux
+         2ek//qoiP3t8R4vumYs5LzCK1HGvGQNnA4gn3xcToPEPQwjRJEKICOtyejcfQuSmq3Ce
+         GuCPNjsw3NI2KGtd9aVsFYPUdw7vjC4QWvbtiTR4Lt3TjjbDBjIPb0cxwYsIj4TMPu90
+         wrw/rsjT/c7Ba7pOz4iIwqIXroRRn1L5XusrNUDzjNcjvc9Wv/B545rBfvxiGVse/oGG
+         FJcN0Af0Navx3lmS/u5+f0Q5M1NnNozEjotTd8ieFV1nX2xqGa8pEYm5Yl0YjLtY+K4w
+         g1bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:feedback-id:subject:message-id:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=Ra7e4wgc9j2Xoe7Ixsg30Wi1UeSzPDpYHvawN1pgoWw=;
+        fh=Fu/PNKwXHCfgNF1eJ/91pgu27i2H2EHc2O1SSt0H0Iw=;
+        b=aKBVgICrlAcuian/DjlSTzaPtW5y5tcvcyWyvgqfqIuPJAmO4g5A2DKj61QUyIqx3W
+         19QzNEbxe33ssYkDLUh0viRuu+3aht5jMJfWfWyU8BscQezpPamxFP2Lh2kEsJYFAp0z
+         wkkOQ/5G68O8XvTw/kh1QAT1vuw86BPhY3M2r3vcd98eUl5SQYRa56eEW5tK0+b8OTE+
+         IPqIUN3JKBSVxoFd7Z5AP9PsK1Zmc8jwLU0yY4M4zHdxvkB2AyWNLm2ErfBFfYsUf4xW
+         EYVWIOGO+d0Rb0SYcmmSPVsoysiUIY1UArJizlVHvvncadHOM6xJfuhAm2NYPLl6xJSq
+         BwTg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=FBzubqe6;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=fTmaMBe9;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.146.168 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+Return-Path: <bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu>
+Received: from o7.mailer.shopify.com (o7.mailer.shopify.com. [149.72.146.168])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-5b954b556cbsi14179182173.318.2025.11.26.07.57.13
+        for <dolev.tenenboim@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Nov 2025 07:57:14 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.146.168 as permitted sender) client-ip=149.72.146.168;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=FBzubqe6;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=fTmaMBe9;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.146.168 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=madeinmarket.eu;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=cep; bh=Ra7e4wgc9j2Xoe7Ixsg30Wi1UeSzPDpYHvawN1pgoWw=;
+	b=FBzubqe61tJIny1s38kFde+cCK5usdZ7Pfqo7lI53mIo06H4Iv/kSKg+clZ1k06cRvS0
+	o6kzwm40h919hnesa6S9zvPz5ngz8P33ItBE5SLbJowdXBrPJW1uwmfrYMb6K8nsGiJf4M
+	+G42Zo3rwNtMdA4eoAFD3gcNUgxkGoZkrN6VybQjAUfK0AGaFFgzfiITh4//JouRabWWqk
+	91rU/YPnqOvkitM0DaWlzz/yxQmsXdtgr9YTHx6WgbE2pmHI6jW/OvWJJvhR8g7EOD71xF
+	eAAyO6ojTRmQVqUJw2e5ZALuz/bmMGS2vSdWJd8R+Qrwgoh6jRtMg13koMtxJUMw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=Ra7e4wgc9j2Xoe7Ixsg30Wi1UeSzPDpYHvawN1pgoWw=;
+	b=fTmaMBe9LRvYxoAQ6nxWBlz790IAPY0BRUlKYixltmlNsWXliXHTbg07ppP1l0XwFQeg
+	MA0PuJoH04s1EqV3wPH+VreoYinUBd+dfN282KC2drr60hksDidG1XCz7pEw1XY2k9j4X6
+	rqEN0due2HZHtDCoJOpXepsaoueF9RKqI=
+Received: by recvd-686fbc5d8-p8pzt with SMTP id recvd-686fbc5d8-p8pzt-1-69272358-3D
+	2025-11-26 15:57:12.983782233 +0000 UTC m=+15117181.177922064
+Received: from MTE1ODY4Njk (unknown)
+	by geopod-ismtpd-59 (SG) with HTTP
+	id M2-o_vCsQWyC_1w6zsbxKg
+	Wed, 26 Nov 2025 15:57:12.971 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=65ea7ac9d5b9bad0cf1b883e094e94b76abd08d0ee083bc9bed0b1a9b6b4
+Date: Wed, 26 Nov 2025 15:57:13 +0000 (UTC)
+From: Rebecca Giulia Marques <r.marques@madeinmarket.eu>
+Mime-Version: 1.0
+Message-ID: <E1020004-187B99A983AED5C7-E5090570@shopify.com>
+Subject: Message from Made in Market Orders 15073 and 15179 =?UTF-8?B?4oCT?=
+ Estimated Dispatch Date
+Feedback-Id: s_64373031135:shopify
+X-SG-EID: 
+ =?us-ascii?Q?u001=2EXScrehty8KviCGKdzi1HEUv1OxGXC2WOt1le19D2H9aQzk668kxkcORMv?=
+ =?us-ascii?Q?wN+KRBYk0vFJspUuJar5rb6=2FjN8v4JR+Pan71HW?=
+ =?us-ascii?Q?whc51=2FnCdWp6m2tm1e6hzvEOLrjBw4uww=2FUMyBi?=
+ =?us-ascii?Q?VzfTY4EDfoeOlJcLbBt3aVZSx8dOOhZqIgmgdOA?=
+ =?us-ascii?Q?UQ4v8GD937QbQLdjhHrN4tigZCHOqBIhk9NHay3?=
+ =?us-ascii?Q?AtRSFvQWDxzAyphA=2F7SOwZZ8NFCLpMymFAN+Hus?=
+ =?us-ascii?Q?4TXR0x8TtJhbCM=2F1PNLm5dPB2A=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDITwp3LLcgXu9gv?=
+ =?us-ascii?Q?F1Oq5oTf1VY9MM=2F=2FZCviT=2FP37sq3wmI+ep7MJ63?=
+ =?us-ascii?Q?NhrwJYwrbBtJ9fL7BOCfpIRB1ufCyD3zsNB5HTC?=
+ =?us-ascii?Q?WsRuQR7KVGCvXoe0AcEh18pf=2FIE8gZHcWfffHTS?=
+ =?us-ascii?Q?NdK05ZRADo9Zzg1lfXCSxwxQk3kICKJiZrfX2Zw?=
+ =?us-ascii?Q?Dj4z2recp=2FtpHca5GTxP0AwHwQ6dFSfTs6pb4Tz?=
+ =?us-ascii?Q?yZF9l1abRewNmnCj9vEEX5eshv0b99WZd1fYmH9?=
+ =?us-ascii?Q?lFJhZwx0aS1Yy9jWcdVBDdpVXwG7iGqE97YZ6ME?=
+ =?us-ascii?Q?AftjXC9JxzDeozIV7uSuh0H8Nmxz35IEocpbH=2FU?=
+ =?us-ascii?Q?JACiv5uN+ltbhkFNUX1yW8+zfuUYcBsjDsUnhf+?=
+ =?us-ascii?Q?NLmvWaUpzQPXVW9sQBTGdWuntqKz25VH9hJaXcw?=
+ =?us-ascii?Q?SjlDWiel4CaMF3ER5ndhIFwzUy5AAi0oWV+pRZL?=
+ =?us-ascii?Q?epJAvOEW+VvR=2FNimI7xm7Xc0Fl451qksQ4Or0kJ?=
+ =?us-ascii?Q?mptc1Ccbm9Qs7whxnnI1wnsIBvgDnD3NzgRGq7a?=
+ =?us-ascii?Q?JEPXoZN8Ts09tSf=2Fkc+3UsLyxLQVRJOA4DZ15kc?=
+ =?us-ascii?Q?txy8lbWu0NntQQoRyPDSvG8bNohKZqyuaWRGUuS?=
+ =?us-ascii?Q?KRrMQsx9MBB2tsWhS0l4rB8JaQY9+DSqeJi5TYh?=
+ =?us-ascii?Q?a+fEMeIhw3fcg2hmLhCxyaiGG4N0765o=2FWCG1BY?=
+ =?us-ascii?Q?LLIW2AQ8v6Gc8E5IaeU85HsvdZ8NOGtaJuM2End?=
+ =?us-ascii?Q?rezMaypfSwTFOSQOl9U8BzHGY5NS0XboQSKFEIH?=
+ =?us-ascii?Q?KEIIwR5D6yNvyfzEn7n+ZY=2FayVCJG=2Ft6NpEoX=2Ft?=
+ =?us-ascii?Q?Q2zxs0Sp=2F19tzBIhe+NNhPM77iU3R6pNjqKl+s6?=
+ =?us-ascii?Q?u7FFNFGsA4PT=2FjG0bi2Tb2ltw1u5KSt5VwiXvjI?=
+ =?us-ascii?Q?=2FHGBXZsFZdAjckWo2A0h6m3iMPyeWKTNWD07Oqx?=
+ =?us-ascii?Q?X=2FTDjdSqiXpEM7SThHIFK3o4811PjvUMu6YE3Im?=
+ =?us-ascii?Q?=2FrMUylfcc7txU9A97efsUZrrtHlASfeaEiP7D+g?=
+ =?us-ascii?Q?ywQc15d2pW+Bmg=3D=3D?=
+To: dolev.tenenboim@gmail.com
+X-Entity-ID: u001.uNWTWLAPVnUUGFJYzhr9gw==
+
+--65ea7ac9d5b9bad0cf1b883e094e94b76abd08d0ee083bc9bed0b1a9b6b4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+Made in Market
+
+Dear Mr. Tenenboim,
+
+I hope you are well.
+
+I am writing to inform you that we expect to dispatch order 15073
+next Wednesday. We will also proceed with the shipment of order
+15179 as part of the same dispatch plan.
+
+If you would like to make any changes or have any questions
+regarding these shipments, please let us know and we will be
+happy to assist.
+
+Best regards.
+
+Human score=20
+( https://www.trustpilot.com/review/madeinmarket.eu?utm_medium=3DTrustbox&u=
+tm_source=3DEmailNewsletter1 )
+ Trustpilot Stars=20
+( https://www.trustpilot.com/review/madeinmarket.eu?utm_medium=3DTrustbox&u=
+tm_source=3DEmailNewsletter1 )
+ number of reviews=20
+( https://www.trustpilot.com/review/madeinmarket.eu?utm_medium=3DTrustbox&u=
+tm_source=3DEmailNewsletter1 )
+ Trustpilot Logo=20
+( https://www.trustpilot.com/review/madeinmarket.eu?utm_medium=3DTrustbox&u=
+tm_source=3DEmailNewsletter1 )
+
+
+If you have any questions, reply to this email or
+contact us at info@madeinmarket.eu
+--65ea7ac9d5b9bad0cf1b883e094e94b76abd08d0ee083bc9bed0b1a9b6b4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=iso-8859-1
+Mime-Version: 1.0
+
+<!DOCTYPE html><html lang=3D"en"><head>
+  <title></title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"/=
+>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width"/>
+ =20
+ =20
+<style>body {
+margin: 0;
+}
+h1 a:hover {
+font-size: 30px; color: #333;
+}
+h1 a:active {
+font-size: 30px; color: #333;
+}
+h1 a:visited {
+font-size: 30px; color: #333;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+.button__text:hover {
+color: #fff; text-decoration: none;
+}
+.button__text:active {
+color: #fff; text-decoration: none;
+}
+.button__text:visited {
+color: #fff; text-decoration: none;
+}
+a:hover {
+color: #F25C54;
+}
+a:active {
+color: #F25C54;
+}
+a:visited {
+color: #F25C54;
+}
+@media (max-width: 600px) {
+  .container {
+    width: 94% !important;
+  }
+  .main-action-cell {
+    float: none !important; margin-right: 0 !important;
+  }
+  .secondary-action-cell {
+    text-align: center; width: 100%;
+  }
+  .header {
+    margin-top: 20px !important; margin-bottom: 2px !important;
+  }
+  .shop-name__cell {
+    display: block;
+  }
+  .order-number__cell {
+    display: block; text-align: left !important; margin-top: 20px;
+  }
+  .po-number__cell {
+    display: block; text-align: left !important; margin-top: 5px;
+  }
+  .button {
+    width: 100%;
+  }
+  .or {
+    margin-right: 0 !important;
+  }
+  .apple-wallet-button {
+    text-align: center;
+  }
+  .customer-info__item {
+    display: block; width: 100% !important;
+  }
+  .spacer {
+    display: none;
+  }
+  .subtotal-spacer {
+    display: none;
+  }
+  .return__mobile-padding {
+    margin-top: 19px; padding-top: 19px;
+  }
+}
+</style>
+</head>
+
+  <body style=3D"margin: 0;">
+    <table class=3D"body" style=3D"height: 100% !important; width: 100% !im=
+portant; border-spacing: 0; border-collapse: collapse;">
+      <tbody><tr>
+        <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#34;S=
+egoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Ca=
+ntarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neu=
+e&#34;, sans-serif;">
+          <table class=3D"header row" style=3D"width: 100%; border-spacing:=
+ 0; border-collapse: collapse; margin: 40px 0 20px;">
+  <tbody><tr>
+    <td class=3D"header__cell" style=3D"font-family: -apple-system, BlinkMa=
+cSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;U=
+buntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;,=
+ &#34;Helvetica Neue&#34;, sans-serif;">
+      <center>
+
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+
+              <table class=3D"row" style=3D"width: 100%; border-spacing: 0;=
+ border-collapse: collapse;">
+                <tbody><tr>
+                  <td class=3D"shop-name__cell" style=3D"font-family: -appl=
+e-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Ox=
+ygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34=
+;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif;">
+                      <img src=3D"https://cdn.shopify.com/s/files/1/0643/73=
+03/1135/files/Red.png?10932" alt=3D"Made in Market" width=3D"100"/>
+                  </td>
+
+                </tr>
+              </tbody></table>
+
+            </td>
+          </tr>
+        </tbody></table>
+
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+          <table class=3D"row content" style=3D"width: 100%; border-spacing=
+: 0; border-collapse: collapse;">
+  <tbody><tr>
+    <td class=3D"content__cell" style=3D"font-family: -apple-system, BlinkM=
+acSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;=
+Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;=
+, &#34;Helvetica Neue&#34;, sans-serif; padding-bottom: 40px; border-width:=
+ 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+             =20
+            <p style=3D"color: #777; line-height: 150%; font-size: 16px; ma=
+rgin: 0;">Dear Mr. Tenenboim,<br/><br/>I hope you are well.<br/><br/>I am w=
+riting to inform you that we expect to dispatch order 15073 next Wednesday.=
+ We will also proceed with the shipment of order 15179 as part of the same =
+dispatch plan.<br/><br/>If you would like to make any changes or have any q=
+uestions regarding these shipments, please let us know and we will be happy=
+ to assist.<br/><br/>Best regards.</p>
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+          <table class=3D"row footer" style=3D"width: 100%; border-spacing:=
+ 0; border-collapse: collapse; border-top-width: 1px; border-top-color: #e5=
+e5e5; border-top-style: solid;">
+  <tbody><tr>
+    <td class=3D"footer__cell" style=3D"font-family: -apple-system, BlinkMa=
+cSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;U=
+buntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;,=
+ &#34;Helvetica Neue&#34;, sans-serif; padding: 35px 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+
+            <p style=3D"color: #777; line-height: 150%; font-size: 16px; ma=
+rgin: 0;" align=3D"center"><a href=3D"https://www.trustpilot.com/review/mad=
+einmarket.eu?utm_medium=3DTrustbox&amp;utm_source=3DEmailNewsletter1" style=
+=3D"text-decoration: none; font-size: 16px; color: #F25C54;"><img src=3D"ht=
+tps://emailsignature.trustpilot.com/newsletter/en-US/1/657739c9b851e37d3694=
+e5be/text1@2x.png" border=3D"0" height=3D"18" alt=3D"Human score" style=3D"=
+max-height: 18px;"/></a> =A0=A0 <a href=3D"https://www.trustpilot.com/revie=
+w/madeinmarket.eu?utm_medium=3DTrustbox&amp;utm_source=3DEmailNewsletter1" =
+style=3D"text-decoration: none; font-size: 16px; color: #F25C54;"><img src=
+=3D"https://emailsignature.trustpilot.com/newsletter/en-US/1/657739c9b851e3=
+7d3694e5be/stars@2x.png" border=3D"0" height=3D"20" alt=3D"Trustpilot Stars=
+" style=3D"max-height: 20px;"/></a> =A0=A0 <span style=3D"display: inline-b=
+lock; font-size: 16px;"><a href=3D"https://www.trustpilot.com/review/madein=
+market.eu?utm_medium=3DTrustbox&amp;utm_source=3DEmailNewsletter1" style=3D=
+"text-decoration: none; font-size: 16px; color: #F25C54;"><img src=3D"https=
+://emailsignature.trustpilot.com/newsletter/en-US/1/657739c9b851e37d3694e5b=
+e/text2@2x.png" border=3D"0" height=3D"18" alt=3D"number of reviews" style=
+=3D"max-height: 18px;"/></a> =A0=A0 <a href=3D"https://www.trustpilot.com/r=
+eview/madeinmarket.eu?utm_medium=3DTrustbox&amp;utm_source=3DEmailNewslette=
+r1" style=3D"text-decoration: none; font-size: 16px; color: #F25C54;"><img =
+src=3D"https://emailsignature.trustpilot.com/brand/n/1/logo.png" border=3D"=
+0" height=3D"20" alt=3D"Trustpilot Logo" style=3D"max-height: 20px; display=
+: inline-block;"/></a></span></p>
+             =20
+              <p class=3D"disclaimer__subtext" style=3D"color: #999; line-h=
+eight: 150%; font-size: 14px; margin: 15px 0 0;">If you have any questions,=
+ reply to this email or contact us at <a href=3D"mailto:info@madeinmarket.e=
+u" style=3D"font-size: 14px; text-decoration: none; color: #F25C54;">info@m=
+adeinmarket.eu</a></p>
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+<img src=3D"https://cdn.shopify.com/shopifycloud/shopify/assets/themes_supp=
+ort/notifications/spacer-1a26dfd5c56b21ac888f9f1610ef81191b571603cb207c6c0f=
+564148473cab3c.png" class=3D"spacer" height=3D"1" style=3D"min-width: 600px=
+; height: 0;"/>
+
+        </td>
+      </tr>
+    </tbody></table>
+ =20
+
+</body></html>
+--65ea7ac9d5b9bad0cf1b883e094e94b76abd08d0ee083bc9bed0b1a9b6b4--

@@ -1,0 +1,73 @@
+# Timeline Events - Email Contact Channels
+TIMELINE_EVENTS_EMAIL_CONTACT_CHANNELS = [
+    {
+        "date": "2025-11-19",
+        "title": "Order Update Email - WhatsApp Support Channel Provided",
+        "desc": "Order update email provides WhatsApp contact number +351 925 544 500 as a support channel.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #15073 has been updated - Made in Market (info@madeinmarket.eu) - 2025-11-19 2309.eml"],
+    },
+    {
+        "date": "2026-01-10",
+        "title": "Order Update Email - WhatsApp Support Channel Provided",
+        "desc": "Order update email provides WhatsApp contact number +351 925 544 500 as a support channel.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #15977 has been updated - Made in Market (info@madeinmarket.eu) - 2026-01-10 2011.eml"],
+    },
+    {
+        "date": "2026-01-16",
+        "title": "Order Update Email - WhatsApp Support Channel Provided",
+        "desc": "Order update email provides WhatsApp contact number +351 925 544 500 as a support channel.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #16045 has been updated - Made in Market (info@madeinmarket.eu) - 2026-01-16 0037.eml"],
+    },
+    {
+        "date": "2025-11-19",
+        "title": "Order Update Email - Phone Support Channel Provided",
+        "desc": "Order update email provides phone support number +351 210 508 653.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #15073 has been updated - Made in Market (info@madeinmarket.eu) - 2025-11-19 2309.eml"],
+    },
+    {
+        "date": "2026-01-10",
+        "title": "Order Update Email - Phone Support Channel Provided",
+        "desc": "Order update email provides phone support number +351 210 508 653.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #15977 has been updated - Made in Market (info@madeinmarket.eu) - 2026-01-10 2011.eml"],
+    },
+    {
+        "date": "2026-01-16",
+        "title": "Order Update Email - Phone Support Channel Provided",
+        "desc": "Order update email provides phone support number +351 210 508 653.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #16045 has been updated - Made in Market (info@madeinmarket.eu) - 2026-01-16 0037.eml"],
+    },
+    {
+        "date": "2025-11-19",
+        "title": "Order Update Email - Email Reply Support Channel Provided",
+        "desc": "Order update email instructs to reply to the email or contact info@madeinmarket.eu for questions.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #15073 has been updated - Made in Market (info@madeinmarket.eu) - 2025-11-19 2309.eml"],
+    },
+    {
+        "date": "2026-01-10",
+        "title": "Order Update Email - Email Reply Support Channel Provided",
+        "desc": "Order update email instructs to reply to the email or contact info@madeinmarket.eu for questions.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #15977 has been updated - Made in Market (info@madeinmarket.eu) - 2026-01-10 2011.eml"],
+    },
+    {
+        "date": "2026-01-16",
+        "title": "Order Update Email - Email Reply Support Channel Provided",
+        "desc": "Order update email instructs to reply to the email or contact info@madeinmarket.eu for questions.",
+        "type": "communication",
+        "evidence": ["🔄 Your Order #16045 has been updated - Made in Market (info@madeinmarket.eu) - 2026-01-16 0037.eml"],
+    },
+    {
+        "date": "2026-01-24",
+        "title": "Order Cancellation Email - Email Reply Contact Provided",
+        "desc": "Cancellation email instructs to reply to the email or contact info@madeinmarket.eu for questions.",
+        "type": "communication",
+        "evidence": ["Order #16142 has been canceled - Made in Market (info@madeinmarket.eu) - 2026-01-24 1102.eml"],
+    },
+]

@@ -1,0 +1,499 @@
+Delivered-To: dolev.tenenboim@gmail.com
+Received: by 2002:a05:7010:f69c:b0:4d4:9cd1:ae2e with SMTP id pv28csp2334654mdb;
+        Sat, 10 Jan 2026 09:41:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHRaufHaQGaMd9+IArgtak90df4qw/sviAecs3bEVqz3G2IMUnbM5mArHbhR6R4uWXyiuKv
+X-Received: by 2002:a05:620a:258e:b0:8b2:dbf7:5193 with SMTP id af79cd13be357-8c3893fbdbemr1164433685a.8.1768066889053;
+        Sat, 10 Jan 2026 09:41:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768066889; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PKg9P+QnFjGr6C04AESgpkQ3sjZ687iSoHQhdeCp3JYTclxnWvQ7vkDVkWHe9Wjo9U
+         oQjXPON1pkdz5L9zlvzCw0CAL2ujX6uflGenY46nCeQyiklTZK29nW3TYrrPCVreGfyk
+         yG6xxS40EkmTIXktIFiy6bzhnEyhPnYgZLdsKgA0zk9JzAGbJ7mR2KGFFveYtYKy/iLH
+         YddcaZ1gdQfxKHqs6a9OQ7i4wCXWyHpytIXuLndYtpUJ7P1HTEqkh8exMp9R3pS5N/ST
+         0izArAu4D9YPGkvggISvYmu2A0yoC1bUk2jvr4uC408RkkP9x6BjEsieFdPXYcn3NLEV
+         +X3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:feedback-id:subject:message-id:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=OCtxlByndG/dJr8XOszWd6hE0su/YExhYTD7l4CoHn4=;
+        fh=Fu/PNKwXHCfgNF1eJ/91pgu27i2H2EHc2O1SSt0H0Iw=;
+        b=ASwZcfD9KHAKLdJG8hgkZSvbeRJZtjuJJgZtFZo2c/ItCKJbxL36moYyO/QPlyDHAh
+         Mt4iWkMWyW7HmW9B8wWbRQfNkIojXuJX6+ufNHSknVpgJ5uQjyvTyPfJNe1tHlUG85iC
+         6vqymfO7gqM9s/pc1Xur/VBOry6U1FgOV1W6jtGEFiRhHqkPlJBD37PNdtNlaW2qfL8n
+         QqVad9gtmsUcb7VmS6rPEEO6HEwDQHYxlC5rbSbLv42yomE12g6go+ku4WEANthiV5LQ
+         IiNh4YsfcpLHkqsvtwhcbJrYFPnk/LFJKE62HdcGQJUZ9lrd/PY3omOji3yKpcpHilUA
+         0R2Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=qXPaj82U;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=uPFIomKL;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 168.245.37.34 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+Return-Path: <bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu>
+Received: from o67.mailer.shopify.com (o67.mailer.shopify.com. [168.245.37.34])
+        by mx.google.com with ESMTPS id af79cd13be357-8c37f5698fbsi1528142985a.640.2026.01.10.09.41.28
+        for <dolev.tenenboim@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Jan 2026 09:41:28 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 168.245.37.34 as permitted sender) client-ip=168.245.37.34;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=qXPaj82U;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=uPFIomKL;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 168.245.37.34 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=madeinmarket.eu;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=cep; bh=OCtxlByndG/dJr8XOszWd6hE0su/YExhYTD7l4CoHn4=;
+	b=qXPaj82UwBgRtFBYNTcaWIU4yXgSUlc1i4CUdWESYZ4m1hIrEQDinO79/I37nJDRifOW
+	bdSFcbaN+dEaXz/jsOLicEMbLdZIxGdzZyPKNlr2/AvrbvoPHVt9451fkbXfjoZeES+UMx
+	ofq5JYr8HiY3qr1vQsf08/7iOpJGZMnTtREtrA9ExnWLkeFWzbUofUoupb2MrALSztn3eV
+	bObE1j7WM8o3/asIJI0oRKmoZtYcNdU0TozW/DPGrZTBJIpWhllkOjNaXNTDUgclupV+KN
+	hPqF6AXjeactLtq7MkW9+BxXcAvsQaEfnyvFaF/mRPIKPKMumfPLos+CM+yARRVQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=OCtxlByndG/dJr8XOszWd6hE0su/YExhYTD7l4CoHn4=;
+	b=uPFIomKLdnYvskjkG2Da/dTMPDnXhEI4v6xsArHRKx/Pi4zohauoiS32p6LchZKJj1x6
+	/X6hyiS6M8zx9jCEfCCmgfoFzB5oIv/kkLG42PcypUzXUr9OBBH26DXfkA5r0n/vnAZjCj
+	RxC4aW8BCK8de3OhNBH6tEhtwznchd0KA=
+Received: by recvd-5fb7fdbd94-nwxct with SMTP id recvd-5fb7fdbd94-nwxct-1-69628F48-B
+	2026-01-10 17:41:28.221802957 +0000 UTC m=+2058390.803372351
+Received: from MTE1ODY4Njk (unknown)
+	by geopod-ismtpd-6 (SG) with HTTP
+	id H3XvZ4fKQV2xoA-2dmA6AQ
+	Sat, 10 Jan 2026 17:41:28.211 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=1b1a3da9ca89d11032c31bbc6ff9efd64e3e1abb4adeb43ac11d83d7ed79
+Date: Sat, 10 Jan 2026 17:41:28 +0000 (UTC)
+From: Made in Market <info@madeinmarket.eu>
+Mime-Version: 1.0
+Message-ID: <E1020004-18896F777C7DE666-DA16D235@shopify.com>
+Subject: 630831 is your code
+Feedback-Id: s_64373031135:shopify
+X-SG-EID: 
+ =?us-ascii?Q?u001=2Ecp81fraSMd4x5boXgrCCFp0qb9xD52A4oqA7X+iXjnx0ws=2F0edwZRpQ4T?=
+ =?us-ascii?Q?1iWZKSvTcsrsnWhx0qspLYQTb90Ad0R=2FZW9ithj?=
+ =?us-ascii?Q?QuZRHe9aXeevEUvrTn9Dm1ROcJYyVnwrxLkLIqv?=
+ =?us-ascii?Q?igtD00IRV2d3=2FAoTqItu=2FHtVk1q3eDqDfTThBEI?=
+ =?us-ascii?Q?mW9sgRPxCTD8r+O6Yz7GUbXWUlSTNtZc2yBH98e?=
+ =?us-ascii?Q?L2IE8DA7p3ROZycMvAZjFChp3rjlcPLAEWYW1pz?= =?us-ascii?Q?R1ea?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDITwp3LLcgXu9gv?=
+ =?us-ascii?Q?F1Oq5oTf1VY9MM=2F=2FZCviT=2FP37sq3wmI+ep7MJ63?=
+ =?us-ascii?Q?NhrwJYwrbBtJ9fL7BOCfpIRB1ufCyD3zE=2FqDtQc?=
+ =?us-ascii?Q?+JWgpE=2F5nyyjm9jXeIFvsQPbxIFXoHHNCdtBjUs?=
+ =?us-ascii?Q?hYNW4jMDYvsYclEIuz72PmfHljfmT0puQNPUG7S?=
+ =?us-ascii?Q?tCW2x8k4gmnY9JcnDAM77ELiCxdf0polYuDaQPv?=
+ =?us-ascii?Q?bc4wbi=2F=2FUCTTdJh3KBZCKMwd9opXJ+v750Remfp?=
+ =?us-ascii?Q?N5aikLAzxe5GEaycfEFgiP=2FBrn5ATJmmvJfZH0t?=
+ =?us-ascii?Q?P4HdGqo3xRl+LsPARkTDbjL6aKURZynl2662EfP?=
+ =?us-ascii?Q?jZocDtX1zAFznmk9b8R1TiJ5KsD3qvaCCpteCXY?=
+ =?us-ascii?Q?1je802ZIegjXo0hmQymLqMNRGrURexm5i4rajbF?=
+ =?us-ascii?Q?XF4ICyegIBNn63S1RJw+WLuJGZTpWEizjmNvZje?=
+ =?us-ascii?Q?I8Arur4=2FhVRqVrgZ3batLver7E9=2FHcHOxBWvubN?=
+ =?us-ascii?Q?J9WBVC=2FSjSfSZzEcVjxXnKLucTCv9vj5cDzk0Pm?=
+ =?us-ascii?Q?PfhDDf3uuc7OYF3=2FfTxvWCpIlTPrfzd+JS4cIOl?=
+ =?us-ascii?Q?Z3ltfxy1kU4u2M7j5NZ2X=2FVfy9VCaXEEoNvLk8Y?=
+ =?us-ascii?Q?1e=2FE5lYZ8qfkhKePjg3BZDNm0nAOt3Jfo0QXiPd?=
+ =?us-ascii?Q?wYiI9TvlSePIEfqXStayzeOAASN+AEf7o=2FRVm6J?=
+ =?us-ascii?Q?Wag288NW+RooSnv80Btd4warviiXNZgLM96BAkl?=
+ =?us-ascii?Q?+KlwAImIfy+YrMd9cJhQvwyXxyh9vKFGIQEgWqh?=
+ =?us-ascii?Q?swQBFX=2F=2FbRgah=2Fl4i7t0mJo3fc3Hh9mkWc6SqKt?=
+ =?us-ascii?Q?kvTEL9177z8OUta5Hr+twPy5EmQ7jhQ3SyoYiqg?=
+ =?us-ascii?Q?GyJsQxAXyqk6zACXq8kEBZPt5SvgGAt4HYuAuQu?=
+ =?us-ascii?Q?GRm0bNMNW+=2FTqdONfrj3M0=2Ff2vZoy=2Fw7dO1Q6EV?=
+ =?us-ascii?Q?x=2F5xNo9jErGxY9bb6KTfx0hgsVBluXH3RceOixE?=
+ =?us-ascii?Q?0a2arJGNHO9cBgrnV2JAPnBT+nwP0A5Q0xHfxKv?=
+ =?us-ascii?Q?CnESJMBXgvjmDuDUrqwsbGPxY9Fkz02lWjJ+1lR?=
+ =?us-ascii?Q?pGo02xCbQuA6PRj0PHo0pAsU3fBun=2F35vykvZh1?=
+ =?us-ascii?Q?HAqIx2fM8h1FhrOjQCjLatJmqjrqU8yOY5l2TuJ?=
+ =?us-ascii?Q?XbtWOlTvBjmGzKKsvLG5wzJ4fNJ4o1+0U8Iia3K?=
+ =?us-ascii?Q?q3fVGFX+OW6SOLjGp+a95EBSnRRbklktMvre2yI?=
+ =?us-ascii?Q?hp9PRrN43tA=3D=3D?=
+To: dolev.tenenboim@gmail.com
+X-Entity-ID: u001.uNWTWLAPVnUUGFJYzhr9gw==
+
+--1b1a3da9ca89d11032c31bbc6ff9efd64e3e1abb4adeb43ac11d83d7ed79
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Mime-Version: 1.0
+
+Made in Market Logo
+
+***********************
+Your verification code:
+***********************
+
+------
+630831
+------
+
+This code can only be used once. It expires in 15 minutes.
+
+=A9 Made in Market
+
+Privacy policy=20
+( https://www.madeinmarket.eu/64373031135/policies/26456850655.html?locale=
+=3Den )
+
+Terms of service=20
+( https://www.madeinmarket.eu/64373031135/policies/26456883423.html?locale=
+=3Den )
+--1b1a3da9ca89d11032c31bbc6ff9efd64e3e1abb4adeb43ac11d83d7ed79
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=iso-8859-1
+Mime-Version: 1.0
+
+<!DOCTYPE html><html lang=3D"en" style=3D"font-size: 14px; font-weight: 400=
+; line-height: 20px; text-transform: initial; letter-spacing: initial; colo=
+r: #202223; font-family: -apple-system, BlinkMacSystemFont, San Francisco, =
+Segoe UI, Roboto, Helvetica Neue, sans-serif; margin: 0; padding: 0;"><head=
+>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"/>
+    <meta name=3D"viewport" content=3D"user-scalable=3Dno, width=3Ddevice-w=
+idth, initial-scale=3D1, maximum-scale=3D1"/>
+   =20
+    <meta name=3D"referrer" content=3D"no-referrer"/>
+
+    <!-- Styles specific to Outlook 2007, 2010 and 2013 -->
+      <!--[if gte mso 9]>
+        <style>
+          ul,
+          ol {
+           margin: 0 0 0 24px;
+          }
+
+          dd {
+            text-indent: -3em;
+          }
+        </style>
+    <![endif]-->
+    <style data-premailer=3D"ignore">
+      .apple-link a {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+
+      .mail-token {
+        font-size: 21px !important;
+        font-weight: bold !important;
+      }
+
+      @media screen and (max-width: 470px) {
+        .mail-body > tbody > tr > td {
+          padding-top: 0 !important;
+        }
+
+        .mail-body__content > tbody > tr > td {
+          border-radius: 0;
+          border-top: 0 !important;
+          border-right: 0 !important;
+          border-left: 0 !important;
+        }
+
+        .mail-sections > tbody > tr > td {
+          padding-right: 0 !important;
+          padding-left: 0 !important;
+        }
+
+        .mail-section > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+
+        .mail-section > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+
+        .mail-help-center > tbody > tr > td:first-child {
+          padding-left: 20px !important;
+        }
+
+        .mail-help-center > tbody > tr > td:last-child {
+          padding-right: 20px !important;
+        }
+      }
+    </style>
+  <style>body {
+margin: 0 !important; padding: 0;
+}
+body {
+height: 100%; width: 100%;
+}
+img {
+border: 0; height: auto; line-height: 0; outline: none; text-decoration: no=
+ne; vertical-align: top; -ms-interpolation-mode: bicubic;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+}
+.ExternalClass {
+line-height: 100%;
+}
+body {
+-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; text-size-adjust: 100%;
+}
+body {
+font-size: 14px; font-weight: 400; line-height: 20px; text-transform: initi=
+al; letter-spacing: initial; color: #202223; font-family: -apple-system, Bl=
+inkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-ser=
+if;
+}
+body {
+background-color: #fafafa;
+}
+@media screen and (min-width: breakpoint (display-text)) {
+  html {
+    font-size: 14px;
+  }
+  body {
+    font-size: 14px;
+  }
+  pre {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 14px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+  .mail-button {
+    font-size: 14px;
+  }
+  .mail-button-destroy {
+    font-size: 14px;
+  }
+}
+@media (max-width: 534px) {
+  .mail-body>tbody>tr>td:nth-child(2) {
+    width: 100% !important;
+  }
+  .mail-body__content {
+    padding: 0 !important; border-left: 0 !important; border-right: 0 !impo=
+rtant; border-top: none !important; border-radius: 0 !important; width: 100=
+% !important; max-width: none !important; margin-top: 0 !important;
+  }
+  .mail-body__content {
+    padding: 0 !important; border-left: 0 !important; border-right: 0 !impo=
+rtant; border-top: none !important; border-radius: 0 !important; width: 100=
+% !important; max-width: none !important; margin-top: 0 !important;
+  }
+}
+</style>
+</head>
+  <body style=3D"height: 100%; width: 100%; -webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; font-size: 14px; font-weight: 400; line-height: 20px; text-transform=
+: initial; letter-spacing: initial; color: #202223; font-family: -apple-sys=
+tem, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, s=
+ans-serif; margin: 0; padding: 0;" bgcolor=3D"#fafafa">
+    <table class=3D"mail-body mail-body__center" style=3D"width: 100%; bord=
+er-collapse: collapse; border-spacing: 0; -webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; text-align: center; padding: 0;" cellpadding=3D"0" cellspacing=3D"0">
+      <tbody>
+        <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+          <td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; bo=
+rder-width: 0;"></td>
+          <td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; width: 470px; =
+padding: 0; border-width: 0;">
+            <table class=3D"mail-body__content" style=3D"width: 100%; borde=
+r-collapse: initial; border-spacing: 0; -webkit-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0; mso-table-rspace: 0; max-width: 660px; text-align: =
+inherit; border-radius: 0; overflow: hidden; margin: 20px auto 0; padding: =
+0; border: 1px none #c9cccf;" cellpadding=3D"0" cellspacing=3D"0">
+              <tbody>
+                <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+                  <td class=3D"mail-priority-indicator mail-priority-indica=
+tor--high" style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; height: 8px; bord=
+er-top-style: solid; border-top-left-radius: var(--p-border-radius-base); b=
+order-top-right-radius: var(--p-border-radius-base); border-left-style: sol=
+id; border-right-style: solid; padding: 0; border-color: transparent; borde=
+r-width: 0;" bgcolor=3D"#fff"></td>
+                </tr>
+                <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+                  <td style=3D"-webkit-text-size-adjust: 100%; -moz-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; border=
+-bottom-style: solid; border-bottom-left-radius: var(--p-border-radius-base=
+); border-bottom-right-radius: var(--p-border-radius-base); border-left-sty=
+le: solid; border-right-style: solid; padding: 0; border-color: transparent=
+; border-width: 0;" bgcolor=3D"#fff">
+                    <table class=3D"mail-sections" style=3D"width: 100%; bo=
+rder-collapse: collapse; border-spacing: 0; -webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; padding: 0;" cellpadding=3D"0" cellspacing=3D"0">
+                      <tbody>
+                        <tr style=3D"margin-top: 0; margin-bottom: 0; paddi=
+ng: 0;">
+                          <td style=3D"-webkit-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%=
+; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0=
+; padding: 20px; border-color: transparent; border-width: 0;" bgcolor=3D"#f=
+ff">
+                              <img alt=3D"Made in Market Logo" id=3D"shop-l=
+ogo" src=3D"https://cdn.shopify.com/s/files/1/0643/7303/1135/files/Green_Ch=
+eckout_200x60@2x.png?v=3D1672265881.webp" style=3D"height: auto; line-heigh=
+t: 0; outline: none; text-decoration: none; vertical-align: top; -ms-interp=
+olation-mode: bicubic; border-width: 0;"/>
+                            <table style=3D"width: 100%; border-collapse: c=
+ollapse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: =
+0;" cellpadding=3D"0" cellspacing=3D"0"><tbody></tbody></table>
+                            <table class=3D"mail-section mail-section--type=
+-primary" style=3D"width: 100%; border-collapse: collapse; border-spacing: =
+0; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rsp=
+ace: 0; margin-top: 0; margin-bottom: 0; padding: 0;" cellpadding=3D"0" cel=
+lspacing=3D"0">
+                              <tbody>
+                                <tr style=3D"margin-top: 0; margin-bottom: =
+0; padding: 0;">
+                                  <td style=3D"-webkit-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-b=
+ottom: 0; padding: 50px 8px 0; border-color: transparent; border-width: 0;"=
+ bgcolor=3D"#fff">
+                                    <table style=3D"width: 100%; border-col=
+lapse: collapse; border-spacing: 0; -webkit-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; p=
+adding: 0;" cellpadding=3D"0" cellspacing=3D"0">
+                                      <tbody>
+                                        <tr style=3D"margin-top: 0; margin-=
+bottom: 0; padding: 0;">
+                                          <td style=3D"-webkit-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; =
+margin-bottom: 0; padding: 0; border-color: transparent; border-width: 0;" =
+bgcolor=3D"#fff">
+                                            <h1 style=3D"margin-top: 0; mar=
+gin-bottom: 0; font-size: 15px; font-weight: 400; line-height: 20px; text-t=
+ransform: initial; letter-spacing: initial; padding: 0;">Your verification =
+code:</h1>
+                                          </td>
+                                        </tr>
+                                        <tr style=3D"margin-top: 0; margin-=
+bottom: 0; padding: 0;">
+                                          <td style=3D"-webkit-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; =
+margin-bottom: 0; padding: 16px 0 0; border-color: transparent; border-widt=
+h: 0;" bgcolor=3D"#fff">
+                                            <h2 class=3D"mail-token" style=
+=3D"margin-top: 0; margin-bottom: 0; font-size: 15px; font-weight: 400; lin=
+e-height: 20px; text-transform: initial; letter-spacing: 8px; text-indent: =
+8px; padding: 0;">630831</h2>
+                                          </td>
+                                        </tr>
+                                        <tr style=3D"margin-top: 0; margin-=
+bottom: 0; padding: 0;">
+                                          <td style=3D"-webkit-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; =
+margin-bottom: 0; padding: 16px 0 0; border-color: transparent; border-widt=
+h: 0;" bgcolor=3D"#fff">
+                                            <h2 style=3D"margin-top: 0; mar=
+gin-bottom: 0; font-size: 15px; font-weight: 400; line-height: 20px; text-t=
+ransform: initial; letter-spacing: initial; padding: 0;">
+                                              </h2>
+<p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; text-size-adjust: 100%; margin-top: 0; margin-bot=
+tom: 0; padding: 0;">This code can only be used once. It expires in 15 minu=
+tes.</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom: 0; padding: 0; bo=
+rder-width: 0;"></td>
+        </tr>
+      </tbody>
+    </table>
+    <footer>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mail=
+-footer" style=3D"width: 100%; border-collapse: collapse; border-spacing: 0=
+; -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; font-size: 12px; line-height: 20px; color: #6d7175; max-width: 470px=
+; margin: 32px auto 0; padding: 0;">
+        <tbody>
+          <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+            <td align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bottom=
+: 0; padding: 0 20px; border-width: 0;">
+              <p style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; margin-top:=
+ 0; margin-bottom: 0; padding: 0;">
+                =A9 Made in Market
+              </p>
+            </td>
+          </tr>
+            <tr style=3D"margin-top: 0; margin-bottom: 0; padding: 0;">
+              <td align=3D"center" style=3D"-webkit-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0; mso-table-rspace: 0; margin-top: 0; margin-bott=
+om: 0; padding: 8px 20px 20px; border-width: 0;">
+                  <a class=3D"privacy-link" target=3D"_blank" href=3D"https=
+://www.madeinmarket.eu/64373031135/policies/26456850655.html?locale=3Den" s=
+tyle=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; margin-top: 0; margin-bottom:=
+ 0; color: #2c6ecb; text-decoration: none; padding: 0;">Privacy policy</a>
+                  <a class=3D"terms-of-service-link" target=3D"_blank" href=
+=3D"https://www.madeinmarket.eu/64373031135/policies/26456883423.html?local=
+e=3Den" style=3D"-webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; margin-top: 0; margi=
+n-bottom: 0; color: #2c6ecb; text-decoration: none; padding: 0 0 0 1.4rem;"=
+>Terms of service</a>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </footer>
+ =20
+
+</body></html>
+--1b1a3da9ca89d11032c31bbc6ff9efd64e3e1abb4adeb43ac11d83d7ed79--

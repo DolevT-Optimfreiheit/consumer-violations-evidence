@@ -1,0 +1,383 @@
+Delivered-To: dolev.tenenboim@gmail.com
+Received: by 2002:a05:7010:3c6:b0:4d4:9cd1:ae2e with SMTP id v6csp7216343mdi;
+        Sun, 7 Dec 2025 05:21:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHyvTgvUolsghHibONqElfW5LjcZrH1kYEjQQb2jXxO0lSHMmIHSgqI/fktKRWQ0oUXnWib
+X-Received: by 2002:a05:622a:509:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4f03fe01b6amr52715011cf.4.1765113676725;
+        Sun, 07 Dec 2025 05:21:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1765113676; cv=none;
+        d=google.com; s=arc-20240605;
+        b=W8o2qX8EB9pb/PXkb2kRbhZo6aVDmj65VbSlyAWS+uljH/ogt3mw/RKk4YTdNaj0Wb
+         kucCjOyQHGYMJY2hwh0AQ+JSmQghBfereI2uH9+Oj0+xcsdQFRXpBmukx1i4vvesaP+6
+         djPCP7MNEb8Aiu9jUD+F1GPPruUxKWUXteerDBVmwjwc4D0ClJPxb6syVl9RuSehgogz
+         1eyhoAaptDHx67tw04770d3nLwGWoy0F7aRXWLi5LKObO2m3aMeutFxulG4qnx72qfFB
+         FHn9Tlw3aFW55lU/QonXCcsjhLBKB/067/wTsYLdTf9V0pvM8lUZ8oFH04vzL7q3bHkq
+         UvOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:feedback-id:subject:message-id:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=oca7Mml/WCd6NKmbPU5d7YjSFMdHFKWGUWRacM+DEhY=;
+        fh=Fu/PNKwXHCfgNF1eJ/91pgu27i2H2EHc2O1SSt0H0Iw=;
+        b=L+uQsIKckVOEEYb/iwQ5MuTuR/PToe7UzDO/0B4+0H2rvh7DYehbMjETjMM5rdGSou
+         Gbe/kQ+mgHDAvK+6U2z4NVD379A0bEKSuYq7m1LOgjYVTCHnI78XMC+IUBmks3kFbEgf
+         SB3pvqDFnEQeSlkHErzy3OPWkCiaOqsRg+L/YlZaW2Aeev2oVq7p6sC24/oc8KFjIHFu
+         EFUstxtPcF/JRlm9pt87Nk9hQZ3A484ZSI40sRueO9ka6d+QdVMLkLrIh3qkNmDleK1B
+         XxzKFqTtWcQZzZkWdn2ptUcCgrXS+2BbpDdcgjQnXUT/kW7mnmbSTRNcvHKpSrFxEqUu
+         ELgw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=DJO5G5+6;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=vA8Ssnwp;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.250.101 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+Return-Path: <bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu>
+Received: from o19.mailer.shopify.com (o19.mailer.shopify.com. [149.72.250.101])
+        by mx.google.com with ESMTPS id af79cd13be357-8b62529cd60si883697885a.222.2025.12.07.05.21.16
+        for <dolev.tenenboim@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Dec 2025 05:21:16 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.250.101 as permitted sender) client-ip=149.72.250.101;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@madeinmarket.eu header.s=cep header.b=DJO5G5+6;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=vA8Ssnwp;
+       spf=pass (google.com: domain of bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu designates 149.72.250.101 as permitted sender) smtp.mailfrom="bounces+11586869-8d92-dolev.tenenboim=gmail.com@mailercep.madeinmarket.eu";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=madeinmarket.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=madeinmarket.eu;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=cep; bh=oca7Mml/WCd6NKmbPU5d7YjSFMdHFKWGUWRacM+DEhY=;
+	b=DJO5G5+6esBx3yKPelbrN9gUjICVwtPN7orVRCWq3e66JLEOU90su5QcFqUD4kA35aab
+	UkRaCcflrVAepg8Wf2yGpmSt8jHEV1SbjxrA+JJqnlZgnzFMnlZjx6OzkSs19ornqEaFs6
+	BVmR8D2LxV75GLS+wlUDxMapUz7ZrZ+CskCJMadz9YzFbss/WGBwCTper8/TMOLqXcPnTT
+	OIWzGLDSeQkEgpPVJDzw49IMtYxh6j2rjKt6GLgd52d7ExfBMEdGFcDwnqWrHArYXiBZ0w
+	K7BcyAXotwWn0XpPxSkSosI02ScJLjD1TgWqoay8bA9ZhQWPmyPLqGqAHfb60nMA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:feedback-id:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=oca7Mml/WCd6NKmbPU5d7YjSFMdHFKWGUWRacM+DEhY=;
+	b=vA8SsnwpzNq+z+3p7DwB9vWRpxuWAKzlFX/VLDXoKl6BuKOkZg2/dYYcM+e+NCFXiG54
+	6b7X7hT5YZ8hmH34qjipvVB4PTE/pyNPhJPISHlCDZOCQ7S4xB7B0z83sxoS8azGGoY2ZH
+	451X3Mwn4wYfhbxJG8PLqzb3jiIqWuwiE=
+Received: by recvd-canary-76f7bbb4cd-bfcbx with SMTP id recvd-canary-76f7bbb4cd-bfcbx-1-69357F4B-B
+	2025-12-07 13:21:15.990582922 +0000 UTC m=+8275220.891153771
+Received: from MTE1ODY4Njk (unknown)
+	by geopod-ismtpd-43 (SG) with HTTP
+	id uR-_Uq1lRWqiaUsGhnX0yQ
+	Sun, 07 Dec 2025 13:21:15.974 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=4b740941e1d47c0736a6dc9beb29114114939d1c30b4e530bcccc47d9a60
+Date: Sun, 07 Dec 2025 13:21:16 +0000 (UTC)
+From: Made in Market <info@madeinmarket.eu>
+Mime-Version: 1.0
+Message-ID: <E1020004-187EF1892A9341C7-EC429637@shopify.com>
+Subject: Your subscription was successfully canceled
+Feedback-Id: s_64373031135:shopify
+X-SG-EID: 
+ =?us-ascii?Q?u001=2Ecp81fraSMd4x5boXgrCCFp0qb9xD52A4oqA7X+iXjnx0ws=2F0edwZRpQ4T?=
+ =?us-ascii?Q?1iWZKSvTcsrsnWhx0qspLYQTb90ARb=2Fb3ID4j6z?=
+ =?us-ascii?Q?0SVnhx78bk=2FdLXYkrt9IZjUTDGdx7+ouTQwx3=2FF?=
+ =?us-ascii?Q?9ZeBaewFB6fFovbxV5eZvBr94q0KyVlM8jx8iIy?=
+ =?us-ascii?Q?=2FCAaGpo1ybnZPdr8ZtVrDEIYrkqTdI0bV5mkMEp?=
+ =?us-ascii?Q?Kpf1OwfdBt3GmIPzOCLdyYZmMMbJB7ZGbD2phDM?=
+ =?us-ascii?Q?106M80yKxH+uglBIrO9wx5xLUw=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDITwp3LLcgXu9gv?=
+ =?us-ascii?Q?F1Oq5oTf1VY9MM=2F=2FZCviT=2FP37sq3wmI+ep7MJ63?=
+ =?us-ascii?Q?NhrwJYwrbBtJ9fL7BOCfpIRB1ufCyD3zmqqD+zl?=
+ =?us-ascii?Q?zLoEPH=2F1d5r2IQNbbjewc4E2nUhDP5edNG0AhG7?=
+ =?us-ascii?Q?wPMYCtjk5+YIskp233+vHidobpeh7MFRMh0TwpJ?=
+ =?us-ascii?Q?6znJGxWd5xvdjJ9TPfxKEeZWYgrzVqb6ki0rWGQ?=
+ =?us-ascii?Q?QMy1PjSHnNJmzKbDPXdSjkLSDL3l5dsMzB6JxLz?=
+ =?us-ascii?Q?CrHvAdBDvvjCfhjCPCDrSXWB9NP8CPOjcr6bV9=2F?=
+ =?us-ascii?Q?Ml0mcUFgHATEYIAqIsRCJm74xGvoQckE3p=2F6vA+?=
+ =?us-ascii?Q?RC1jCneMCtdcMR3XFJuo70WnuSR=2F7hQvbO4XFMF?=
+ =?us-ascii?Q?FjR95BlpH0jWI4SYdc7aSn0mg9v1gyjHMddvdGr?=
+ =?us-ascii?Q?yXVQLw+7PAjGyFLPd3LLgJ3uIvSjQBTCeOjLkqt?=
+ =?us-ascii?Q?6Kh2hQ7TMCol1HF+w+fA=2FwVXrhXFaXCylZvQohE?=
+ =?us-ascii?Q?=2FP0edjIsvvT4Ull7rGqKi3qSKpxh9H2ZWw44t4O?=
+ =?us-ascii?Q?3DsutqS0sCLBpDLmnrPi6Y2khP7=2Fu085zQAvuzL?=
+ =?us-ascii?Q?EwCD7WpHIPTJRD7j9LZnZhubor8l64F46cz0Iyj?=
+ =?us-ascii?Q?24kX15Wxsczv020I+T1zFPR8YZvx7GazcfFDzFX?=
+ =?us-ascii?Q?BwxkFLGl=2F8XY=2FDXUtRx28DNVZw6hyxf5q552ngI?=
+ =?us-ascii?Q?FKMDLucEyMAkzMWrEcwk6jTvxkgjefLXT1IY6Kh?=
+ =?us-ascii?Q?HC+YLVa3C=2FXhXCLMTpV7nrsT0jrbs89tptQDO6a?=
+ =?us-ascii?Q?w3L0ZI1x58WbxJjwbM2kQ=2FnF0MyphR6faTdSNph?=
+ =?us-ascii?Q?x4=2FkYtQx81pW5ceRtVar5P7j9QasQqGAsoHZK+q?=
+ =?us-ascii?Q?Qt9FDLExDtXHPm+68USpSsrB1D8qE7kKV0bUwYN?=
+ =?us-ascii?Q?bwWKrnMr2=2FxZsBmrCdQ8NcIHQdRyNUar9VAF06k?=
+ =?us-ascii?Q?sgfQo74XyB8LRW5xXs2D9v9vlpTaBVmiLd4jH=2FX?=
+ =?us-ascii?Q?t8uiq3JgptfekYi+n3wR4Ws0p7Ynlr1sEud21z5?=
+ =?us-ascii?Q?=2FYV7r8bzibQoPBHZG2LlAsjmLVx=2FSJbJjAvWTS0?=
+ =?us-ascii?Q?gvmsNy2D768x5Hw7ujfjiH5JQ=2Fn0AKrsURG6VyW?=
+ =?us-ascii?Q?mvMjVQVoeUtjX9ojZyow2yZUKFM4AtTUSqyV4QS?=
+ =?us-ascii?Q?wQDCVpb9627QDg3iFBgUVIChtk4v5wc6oxfZzfz?=
+ =?us-ascii?Q?lkVHIqSlbH5o6ikVCYLGF9sLzGVNRpoplaaTLHY?=
+ =?us-ascii?Q?xwlfSFSA2Wj4lAo2D9jt2lydACcVwEgcBhXeLdo?=
+ =?us-ascii?Q?blGvbxyf5bdd2Q?=
+To: dolev.tenenboim@gmail.com
+X-Entity-ID: u001.uNWTWLAPVnUUGFJYzhr9gw==
+
+--4b740941e1d47c0736a6dc9beb29114114939d1c30b4e530bcccc47d9a60
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+Made in Market
+
+------------------------------
+Your subscription was canceled
+------------------------------
+
+You will not receive any upcoming orders.
+
+Manage your subscription=20
+( https://account.madeinmarket.eu/pages/6971b1a1-27f6-4c27-b8b0-3009fd3b921=
+d/subscriptions/22578037060 )
+
+
+If you have any questions, reply to this email or
+contact us at info@madeinmarket.eu
+--4b740941e1d47c0736a6dc9beb29114114939d1c30b4e530bcccc47d9a60
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+<!DOCTYPE html><html lang=3D"en"><head>
+  <title></title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"/=
+>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width"/>
+ =20
+ =20
+<style>body {
+margin: 0;
+}
+h1 a:hover {
+font-size: 30px; color: #333;
+}
+h1 a:active {
+font-size: 30px; color: #333;
+}
+h1 a:visited {
+font-size: 30px; color: #333;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+.button__text:hover {
+color: #fff; text-decoration: none;
+}
+.button__text:active {
+color: #fff; text-decoration: none;
+}
+.button__text:visited {
+color: #fff; text-decoration: none;
+}
+a:hover {
+color: #F25C54;
+}
+a:active {
+color: #F25C54;
+}
+a:visited {
+color: #F25C54;
+}
+@media (max-width: 600px) {
+  .container {
+    width: 94% !important;
+  }
+  .main-action-cell {
+    float: none !important; margin-right: 0 !important;
+  }
+  .secondary-action-cell {
+    text-align: center; width: 100%;
+  }
+  .header {
+    margin-top: 20px !important; margin-bottom: 2px !important;
+  }
+  .shop-name__cell {
+    display: block;
+  }
+  .order-number__cell {
+    display: block; text-align: left !important; margin-top: 20px;
+  }
+  .po-number__cell {
+    display: block; text-align: left !important; margin-top: 5px;
+  }
+  .button {
+    width: 100%;
+  }
+  .or {
+    margin-right: 0 !important;
+  }
+  .apple-wallet-button {
+    text-align: center;
+  }
+  .customer-info__item {
+    display: block; width: 100% !important;
+  }
+  .spacer {
+    display: none;
+  }
+  .subtotal-spacer {
+    display: none;
+  }
+  .return__mobile-padding {
+    margin-top: 19px; padding-top: 19px;
+  }
+}
+</style>
+</head>
+
+<body style=3D"margin: 0;">
+  <table class=3D"body" style=3D"height: 100% !important; width: 100% !impo=
+rtant; border-spacing: 0; border-collapse: collapse;">
+    <tbody><tr>
+      <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#34;Seg=
+oe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#34;Cant=
+arell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica Neue&=
+#34;, sans-serif;">
+        <table class=3D"header row" style=3D"width: 100%; border-spacing: 0=
+; border-collapse: collapse; margin: 40px 0 20px;">
+  <tbody><tr>
+    <td class=3D"header__cell" style=3D"font-family: -apple-system, BlinkMa=
+cSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;U=
+buntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;,=
+ &#34;Helvetica Neue&#34;, sans-serif;">
+      <center>
+
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+
+              <table class=3D"row" style=3D"width: 100%; border-spacing: 0;=
+ border-collapse: collapse;">
+                <tbody><tr>
+                  <td class=3D"shop-name__cell" style=3D"font-family: -appl=
+e-system, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Ox=
+ygen&#34;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34=
+;Droid Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif;">
+                      <img src=3D"https://cdn.shopify.com/s/files/1/0643/73=
+03/1135/files/Red.png?11078" alt=3D"Made in Market" width=3D"100"/>
+                  </td>
+
+                </tr>
+              </tbody></table>
+
+            </td>
+          </tr>
+        </tbody></table>
+
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+
+        <table class=3D"row content" style=3D"width: 100%; border-spacing: =
+0; border-collapse: collapse;">
+  <tbody><tr>
+    <td class=3D"content__cell" style=3D"font-family: -apple-system, BlinkM=
+acSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;=
+Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;=
+, &#34;Helvetica Neue&#34;, sans-serif; padding-bottom: 40px; border-width:=
+ 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+             =20
+          <h2 style=3D"font-weight: normal; font-size: 24px; margin: 0 0 10=
+px;">Your subscription was canceled</h2>
+          <p style=3D"color: #777; line-height: 150%; font-size: 16px; marg=
+in: 0;">You will not receive any upcoming orders.</p>
+
+         =20
+    <table class=3D"row actions" style=3D"width: 100%; border-spacing: 0; b=
+order-collapse: collapse; margin-top: 20px;">
+      <tbody><tr>
+        <td class=3D"actions__cell" style=3D"font-family: -apple-system, Bl=
+inkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &=
+#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&=
+#34;, &#34;Helvetica Neue&#34;, sans-serif;">
+          <table class=3D"button main-action-cell" style=3D"border-spacing:=
+ 0; border-collapse: collapse; float: left; margin-right: 15px;">
+            <tbody><tr>
+              <td class=3D"button__cell" style=3D"font-family: -apple-syste=
+m, BlinkMacSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#3=
+4;, &#34;Ubuntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid =
+Sans&#34;, &#34;Helvetica Neue&#34;, sans-serif; border-radius: 4px;" align=
+=3D"center" bgcolor=3D"#F25C54"><a href=3D"https://account.madeinmarket.eu/=
+pages/6971b1a1-27f6-4c27-b8b0-3009fd3b921d/subscriptions/22578037060" class=
+=3D"button__text" style=3D"font-size: 16px; text-decoration: none; display:=
+ block; color: #fff; padding: 20px 25px;">Manage your subscription</a></td>
+            </tr>
+          </tbody></table>
+        </td>
+      </tr>
+    </tbody></table>
+
+
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+        <table class=3D"row footer" style=3D"width: 100%; border-spacing: 0=
+; border-collapse: collapse; border-top-width: 1px; border-top-color: #e5e5=
+e5; border-top-style: solid;">
+  <tbody><tr>
+    <td class=3D"footer__cell" style=3D"font-family: -apple-system, BlinkMa=
+cSystemFont, &#34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;U=
+buntu&#34;, &#34;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;,=
+ &#34;Helvetica Neue&#34;, sans-serif; padding: 35px 0;">
+      <center>
+        <table class=3D"container" style=3D"width: 560px; text-align: left;=
+ border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+          <tbody><tr>
+            <td style=3D"font-family: -apple-system, BlinkMacSystemFont, &#=
+34;Segoe UI&#34;, &#34;Roboto&#34;, &#34;Oxygen&#34;, &#34;Ubuntu&#34;, &#3=
+4;Cantarell&#34;, &#34;Fira Sans&#34;, &#34;Droid Sans&#34;, &#34;Helvetica=
+ Neue&#34;, sans-serif;">
+             =20
+              <p class=3D"disclaimer__subtext" style=3D"color: #999; line-h=
+eight: 150%; font-size: 14px; margin: 0;">If you have any questions, reply =
+to this email or contact us at <a href=3D"mailto:info@madeinmarket.eu" styl=
+e=3D"font-size: 14px; text-decoration: none; color: #F25C54;">info@madeinma=
+rket.eu</a></p>
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+
+<img src=3D"https://cdn.shopify.com/shopifycloud/shopify/assets/themes_supp=
+ort/notifications/spacer-1a26dfd5c56b21ac888f9f1610ef81191b571603cb207c6c0f=
+564148473cab3c.png" class=3D"spacer" height=3D"1" style=3D"min-width: 600px=
+; height: 0;"/>
+
+      </td>
+    </tr>
+  </tbody></table>
+
+
+</body></html>
+--4b740941e1d47c0736a6dc9beb29114114939d1c30b4e530bcccc47d9a60--
